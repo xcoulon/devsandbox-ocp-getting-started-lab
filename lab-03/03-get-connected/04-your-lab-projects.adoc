@@ -1,0 +1,13 @@
+= Your lab projects
+:source-highlighter: highlightjs
+
+Two projects are relevant to this lab:
+
+* `{user}-datasphere`: the pre-deployed DataSphere reference instance -- you'll open it
+  in Step 0.1 to see the app you'll be deploying under GitOps management
+* `{user}-gitops`: your personal ArgoCD instance runs here -- and where you'll deploy
+  a second DataSphere instance under GitOps management
+
+Both deployments run in parallel, which makes it easy to compare the GitOps-managed
+instance against the pre-deployed one as you work through the lab.
+

@@ -1,0 +1,14 @@
+= The application: DataSphere
+:source-highlighter: highlightjs
+
+DataSphere is a datacenter status dashboard that simulates a global network of compute sites.
+You can toggle sites online or offline, adjust simulated traffic load with a slider, and watch
+the map update in real time. The application runs as three components:
+
+* *datasphere-ui* — a React frontend served by nginx that renders the world map
+* *datasphere-api* — a Python FastAPI backend that tracks datacenter state and load
+* *datasphere-redis* — a Redis instance that keeps state consistent across API replicas
+
+A pre-deployed DataSphere instance is already running in your `{user}-datasphere` project.
+Open it now to see what you'll be deploying and managing in this lab.
+

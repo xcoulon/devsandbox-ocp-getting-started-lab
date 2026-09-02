@@ -1,0 +1,193 @@
+---
+# Source: datasphere/templates/configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: datasphere-config
+data:
+  config.json: |
+    {"theme": "earth"}
+---
+# Source: datasphere/templates/service-api.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: datasphere-api
+  labels:
+    app: datasphere
+    component: api
+spec:
+  selector:
+    app: datasphere
+    component: api
+  ports:
+    - port: 8080
+      targetPort: 8080
+---
+# Source: datasphere/templates/service-redis.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis
+  labels:
+    app: datasphere
+    component: redis
+spec:
+  selector:
+    app: datasphere
+    component: redis
+  ports:
+    - port: 6379
+      targetPort: 6379
+---
+# Source: datasphere/templates/service-ui.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: datasphere-ui
+  labels:
+    app: datasphere
+    component: ui
+spec:
+  selector:
+    app: datasphere
+    component: ui
+  ports:
+    - port: 8080
+      targetPort: 8080
+---
+# Source: datasphere/templates/deployment-api.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: datasphere-api
+  labels:
+    app: datasphere
+    component: api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: datasphere
+      component: api
+  template:
+    metadata:
+      labels:
+        app: datasphere
+        component: api
+      annotations:
+        # Checksum of the ConfigMap — changing values.yaml theme triggers
+        # a rolling restart automatically on helm upgrade / Argo CD sync.
+        checksum/config: fc22b6a69dcea43c7db9b196fe7030415d56651ea613c19895e1a7348cb39e89
+    spec:
+      containers:
+        - name: api
+          image: quay.io/rhn_sa_sborenst/datasphere-api:1.4.3
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DATASPHERE_CONFIG_PATH
+              value: /etc/datasphere/config.json
+            - name: REDIS_URL
+              value: "redis://redis:6379"
+          volumeMounts:
+            - name: theme-config
+              mountPath: /etc/datasphere
+      volumes:
+        - name: theme-config
+          configMap:
+            name: datasphere-config
+---
+# Source: datasphere/templates/deployment-redis.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: datasphere-redis
+  labels:
+    app: datasphere
+    component: redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: datasphere
+      component: redis
+  template:
+    metadata:
+      labels:
+        app: datasphere
+        component: redis
+    spec:
+      containers:
+        - name: redis
+          image: registry.redhat.io/rhel9/redis-7:latest
+          ports:
+            - containerPort: 6379
+          resources:
+            limits:
+              cpu: 100m
+              memory: 128Mi
+            requests:
+              cpu: 50m
+              memory: 64Mi
+          readinessProbe:
+            tcpSocket:
+              port: 6379
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          livenessProbe:
+            tcpSocket:
+              port: 6379
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            failureThreshold: 3
+---
+# Source: datasphere/templates/deployment-ui.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: datasphere-ui
+  labels:
+    app: datasphere
+    component: ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: datasphere
+      component: ui
+  template:
+    metadata:
+      labels:
+        app: datasphere
+        component: ui
+    spec:
+      containers:
+        - name: ui
+          image: quay.io/rhn_sa_sborenst/datasphere-ui:1.4.3
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 5
+---
+# Source: datasphere/templates/route-ui.yaml
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: datasphere-ui
+  labels:
+    app: datasphere
+    component: ui
+spec:
+  to:
+    kind: Service
+    name: datasphere-ui
+  port:
+    targetPort: 8080
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect

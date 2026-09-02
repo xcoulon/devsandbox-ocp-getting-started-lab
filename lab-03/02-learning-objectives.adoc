@@ -1,0 +1,10 @@
+= Learning objectives
+:source-highlighter: highlightjs
+
+By the end of this lab, you'll be able to:
+
+* Explain what GitOps is and why Git is used as the source of truth for cluster state
+* Register an application in ArgoCD by pointing it at a Git repository
+* Make a configuration change through Git and watch ArgoCD apply it automatically
+* Explain what drift detection is and why it matters
+

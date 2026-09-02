@@ -1,0 +1,16 @@
+= Summary
+:source-highlighter: highlightjs
+
+[cols="1,2",options="header"]
+|===
+| What you did | How it worked
+
+| Registered DataSphere in ArgoCD
+| Pointed ArgoCD at your `datasphere-gitops` Gitea repository. ArgoCD rendered the Helm chart and deployed it.
+
+| Added a new datacenter by editing a file
+| Committed a change to `values.yaml` in Gitea. ArgoCD detected it, re-rendered the chart, and applied only what changed.
+
+| Scaled to 0 directly in the cluster
+| ArgoCD detected the mismatch with Git and restored the declared state automatically.
+|===

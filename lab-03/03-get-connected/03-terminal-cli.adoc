@@ -1,0 +1,28 @@
+= Terminal (CLI)
+:source-highlighter: highlightjs
+
+Click the *Terminal* tab on the right side of this lab interface.
+
+Log in to the cluster:
+
+[source,role="execute",subs="attributes+"]
+----
+oc login {openshift_api_url} --username {user} --password {password}
+----
+
+[%collapsible]
+.Expected output
+====
+[subs="attributes+"]
+----
+Login successful.
+
+You have access to the following projects and can switch between them with 'oc project <projectname>':
+
+  * {user}-datasphere
+    {user}-gitops
+
+Using project "{user}-datasphere".
+----
+====
+

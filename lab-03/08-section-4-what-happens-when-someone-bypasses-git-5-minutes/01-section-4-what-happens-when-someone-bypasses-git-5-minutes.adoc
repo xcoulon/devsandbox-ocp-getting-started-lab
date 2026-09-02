@@ -1,0 +1,11 @@
+= Section 4: What happens when someone bypasses Git (5 minutes)
+:source-highlighter: highlightjs
+
+GitOps isn't just about deploying through Git -- it's about *only* deploying
+through Git. The reason Self Heal exists is that sometimes people make changes
+directly in the cluster: a quick `oc scale` to test something, a manual ConfigMap
+edit under pressure. With Self Heal enabled, ArgoCD detects and corrects those
+changes automatically.
+
+Let's see it.
+

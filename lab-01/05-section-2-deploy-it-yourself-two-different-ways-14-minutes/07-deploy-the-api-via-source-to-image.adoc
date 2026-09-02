@@ -1,0 +1,8 @@
+= Deploy the API via Source-to-Image
+:source-highlighter: highlightjs
+
+Rather than deploying from a pre-built image, you can point OpenShift directly at a source
+code repository. OpenShift detects the language, installs dependencies, builds a container
+image, and deploys it -- all inside the cluster, with no Dockerfile required.
+This is *Source-to-Image* (S2I).
+

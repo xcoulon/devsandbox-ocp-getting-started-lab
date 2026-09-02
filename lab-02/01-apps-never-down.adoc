@@ -1,0 +1,7 @@
+= Module 2: Apps That Never Go Down
+:source-highlighter: highlightjs
+
+The DataSphere datacenter visualization is already running in your `{user}-datasphere` project.
+In this module, you'll explore what keeps it running when things go wrong -- by breaking it on
+purpose and watching OpenShift respond automatically. Then you'll configure those same resilience
+features from scratch in your own project.

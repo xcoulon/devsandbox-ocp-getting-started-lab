@@ -1,0 +1,44 @@
+= Step 3.1: Clean up the manual deployments
+:source-highlighter: highlightjs
+
+First, remove the resources you created manually in Section 2. Use the Terminal for this step --
+deleting multiple resource types is much faster from the CLI.
+
+[source,role="execute"]
+----
+oc delete all --selector app=datasphere-ui
+oc delete all --selector app=datasphere-api
+----
+
+[%collapsible]
+.Expected output
+====
+[subs="attributes+"]
+----
+service "datasphere-ui" deleted from {user}-lab namespace
+deployment.apps "datasphere-ui" deleted from {user}-lab namespace
+imagestream.image.openshift.io "datasphere-ui" deleted from {user}-lab namespace
+route.route.openshift.io "datasphere-ui" deleted from {user}-lab namespace
+service "datasphere-api" deleted from {user}-lab namespace
+deployment.apps "datasphere-api" deleted from {user}-lab namespace
+buildconfig.build.openshift.io "datasphere-api" deleted from {user}-lab namespace
+imagestream.image.openshift.io "datasphere-api" deleted from {user}-lab namespace
+----
+====
+
+Verify the project is clean:
+
+[source,role="execute"]
+----
+oc get all
+----
+
+[%collapsible]
+.Expected output
+====
+[subs="attributes+"]
+----
+No resources found in {user}-lab namespace.
+----
+====
+

@@ -1,0 +1,11 @@
+= Your lab projects
+:source-highlighter: highlightjs
+
+Three projects have been provisioned for you:
+
+* `{user}-datasphere`: contains the pre-deployed DataSphere demo app -- explore it in Section 1
+* `{user}-lab`: your clean workspace -- you'll build here in Section 2
+* `{user}-lab-helm`: a second clean workspace -- you'll use this in Section 3
+
+NOTE: In OpenShift, a Project is equivalent to a Kubernetes namespace. It scopes your resources and controls access.
+

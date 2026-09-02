@@ -1,0 +1,6 @@
+= Deploy the UI from a container image
+:source-highlighter: highlightjs
+
+The fastest way to deploy an application is from an image that's already built and published
+to a registry. You just point OpenShift at the image and it handles the rest.
+

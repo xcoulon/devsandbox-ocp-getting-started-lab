@@ -1,0 +1,11 @@
+= Learning objectives
+:source-highlighter: highlightjs
+
+By the end of this module, you'll be able to:
+
+* Identify and describe the role of Pods, Services, and Routes in OpenShift
+* Deploy a containerized application from a pre-built image using the `oc` CLI or the web console
+* Build and deploy an application from source code using Source-to-Image (S2I)
+* Deploy a multi-component application in a single command using a Helm chart
+* Explain when to reach for each of the three deployment methods
+

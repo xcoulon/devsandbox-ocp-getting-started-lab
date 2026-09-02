@@ -1,0 +1,23 @@
+= Step 2.3: Create a Route for external access
+:source-highlighter: highlightjs
+
+NOTE: If you used the *Web Console* path above, the Route was created as part of Step 2.2 --
+skip this step and go to Step 2.4.
+
+[%collapsible]
+.Using the Terminal (CLI)
+====
+[source,role="execute"]
+----
+oc create route edge --service=datasphere-ui
+----
+
+[%collapsible]
+.Expected output
+=====
+----
+route.route.openshift.io/datasphere-ui created
+----
+=====
+====
+

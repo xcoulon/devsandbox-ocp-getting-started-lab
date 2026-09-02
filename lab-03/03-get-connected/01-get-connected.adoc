@@ -1,0 +1,6 @@
+= Get connected
+:source-highlighter: highlightjs
+
+Each step in this lab includes both a *Terminal (CLI)* and a *Web Console* option.
+Use whichever you prefer -- both achieve the same result.
+

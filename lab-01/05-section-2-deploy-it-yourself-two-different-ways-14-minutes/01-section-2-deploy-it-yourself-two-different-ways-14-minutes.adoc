@@ -1,0 +1,11 @@
+= Section 2: Deploy it yourself -- two different ways (14 minutes)
+:source-highlighter: highlightjs
+
+Now that you understand the building blocks, it's time to deploy DataSphere yourself.
+You'll use two different methods: first from a pre-built container image, then from
+source code using Source-to-Image. Each method has its place, and by the end you'll
+know when to reach for which.
+
+TIP: If you're already familiar with deploying container images and S2I builds on OpenShift,
+you can skip ahead to xref:../06-section-3-deploy-everything-with-a-helm-chart-6-minutes/01-section-3-deploy-everything-with-a-helm-chart-6-minutes.adoc[] where you'll deploy the full application with a Helm chart.
+

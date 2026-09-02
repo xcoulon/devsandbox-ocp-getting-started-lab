@@ -1,0 +1,14 @@
+= Section 3: Deploy everything with a Helm chart (6 minutes)
+:source-highlighter: highlightjs
+
+You deployed DataSphere in two stages: the UI from a container image, the API from source.
+That works, but in practice most teams don't run individual commands one at a time.
+They package their application as a *Helm chart* -- a single installable unit that deploys
+every component together.
+
+A chart is a directory of templated Kubernetes manifests plus a `values.yaml` file that controls
+configurable inputs (image tags, theme, replica count, and so on). When you run `helm install`,
+Helm renders those templates and submits all the resulting manifests to the cluster in one shot.
+It also records what it installed as a named *release*, so it can upgrade, roll back, or cleanly
+remove every resource it owns.
+

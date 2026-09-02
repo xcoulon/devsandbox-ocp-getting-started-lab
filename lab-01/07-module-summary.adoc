@@ -1,0 +1,25 @@
+= Module summary
+:source-highlighter: highlightjs
+
+You deployed the DataSphere application three different ways and learned the building blocks
+behind every OpenShift application.
+
+*The three building blocks:*
+
+* *Pod*: the running container; ephemeral and managed by a Deployment
+* *Service*: stable internal network address; uses label selectors to find pods
+* *Route*: external access with a public hostname and automatic TLS termination
+
+*The three deployment methods:*
+
+* *Container image*: fastest path when the image is already built and published;
+  no build step, no source code required
+* *Source-to-Image*: point OpenShift at a Git repository and it builds, packages,
+  and deploys the application; no Dockerfile, no local tooling required
+* *Helm chart*: package the entire multi-component application for repeatable,
+  version-controlled deployments; install or remove the whole stack in one command
+
+*Next steps:*
+
+DataSphere is running. Module 2 covers what happens when things break -- and how OpenShift
+keeps your application available automatically with scaling and self-healing.

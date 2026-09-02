@@ -1,0 +1,7 @@
+= Your lab projects
+:source-highlighter: highlightjs
+
+Two projects are relevant to this lab:
+
+* `{user}-datasphere`: the pre-deployed DataSphere app -- this is what you'll observe and break in Section 1
+* `{user}-lab`: your clean workspace -- this is where you'll build your own resilient stack in Section 2

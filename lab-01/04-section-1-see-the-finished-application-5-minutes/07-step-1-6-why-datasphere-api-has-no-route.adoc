@@ -1,0 +1,42 @@
+= Step 1.6: Why datasphere-api has no Route
+:source-highlighter: highlightjs
+
+The API only needs to be reachable from within the cluster, not from the internet.
+To see this, compare the Services list to the Routes list.
+
+[%collapsible]
+.Using the Terminal (CLI)
+====
+Compare the Services to the Routes:
+
+[source,role="execute"]
+----
+oc get services
+----
+
+[source,role="execute"]
+----
+oc get routes
+----
+
+Three Services, but only one Route. The API and Redis are reachable inside the cluster
+by Service name, but only `datasphere-ui` has a Route for external access.
+====
+
+[%collapsible]
+.Using the Web Console
+====
+In the left navigation, click *Services*. The list shows three Services:
+`datasphere-api`, `datasphere-ui`, and `redis`. Now click *Routes* -- only one Route
+exists: `datasphere-ui`.
+
+// SCREENSHOT NEEDED: Routes page in {user}-datasphere showing only datasphere-ui — no route for datasphere-api or redis
+image::../../assets/images/console-guide/lab-01-deploy-the-app/08-routes-one-only.png[Routes list showing only the datasphere-ui route — no route for datasphere-api or redis]
+
+Three Services, but only one Route. The API and Redis are reachable inside the cluster
+by Service name, but only `datasphere-ui` has a Route for external access.
+====
+
+The UI talks to the API by Service name -- `datasphere-api` -- and OpenShift's internal DNS
+resolves it automatically.
+

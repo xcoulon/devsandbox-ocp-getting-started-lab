@@ -1,0 +1,5 @@
+= Section 1: What keeps your app running?
+:source-highlighter: highlightjs
+
+The pre-deployed DataSphere app has resilience features already configured: a ReplicaSet,
+an auto-scaler, and health probes. In this section you'll interact with each one directly.

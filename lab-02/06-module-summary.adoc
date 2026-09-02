@@ -1,0 +1,31 @@
+= Module summary
+:source-highlighter: highlightjs
+
+Imagine running 500 services in production. Pods crash at 3am. Traffic spikes every Friday
+afternoon. A memory leak quietly degrades one pod in a ten-pod deployment.
+
+With what you configured today, none of that requires a human:
+
+* The *ReplicaSet* detects the crashed pod and creates a replacement
+* The *HPA* watches CPU climb and adds capacity before users notice slowness
+* The *liveness probe* catches the degraded pod and restarts it before the error rate budges
+
+[cols="1,2",options="header"]
+|===
+| What you did | How it works
+
+| Deleted a pod (Section 1)
+| The ReplicaSet detected the missing pod and created a replacement automatically
+
+| Scaled to 3 replicas (Section 1)
+| Losing 1 pod of 3 leaves 2 still serving traffic -- the Service routes around the failure
+
+| Watched auto-scaling (Section 1)
+| The HPA measured CPU against resource requests and added pods when load crossed the threshold
+
+| Triggered a health probe failure (Section 1 and 2)
+| The liveness probe detected the broken pod and restarted it; the readiness probe kept traffic away during recovery
+
+| Configured all three features from scratch (Section 2)
+| Resource limits → HPA → liveness probe → readiness probe -- the same four steps that production workloads follow
+|===

@@ -1,0 +1,14 @@
+= What you learned
+:source-highlighter: highlightjs
+
+* *GitOps* means Git is the system of record for what runs in the cluster.
+  You declare the desired state in a repository; a controller reconciles the cluster to match.
+* *ArgoCD* is that controller. It watches a Git repository and applies changes automatically.
+* *Drift detection* catches changes made outside of Git and corrects them -- either
+  automatically (Self Heal) or by alerting you and waiting for a manual sync.
+* Every configuration change is a Git commit: auditable, reversible, and reviewable.
+
+The DataSphere app you deployed in Modules 1 and 2 used `oc` commands and Helm
+from your terminal. The version you deployed in this lab came entirely from a
+Gitea repository. Both work -- but only the second one has a history.
+

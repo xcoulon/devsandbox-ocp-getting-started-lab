@@ -1,0 +1,7 @@
+= Section 1: See the finished application (5 minutes)
+:source-highlighter: highlightjs
+
+The DataSphere demo app is already running in your `{user}-datasphere` project.
+Before you build anything, let's see what the finished result looks like -- and understand
+what makes it work.
+

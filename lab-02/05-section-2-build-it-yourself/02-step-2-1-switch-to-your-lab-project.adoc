@@ -1,0 +1,30 @@
+= Step 2.1: Switch to your lab project
+:source-highlighter: highlightjs
+
+[%collapsible]
+.Using the Terminal (CLI)
+====
+[source,role="execute",subs="attributes+"]
+----
+oc project {user}-lab
+----
+
+[%collapsible]
+.Expected output
+=====
+[subs="attributes+"]
+----
+Now using project "{user}-lab" on server "{openshift_api_url}".
+----
+=====
+====
+
+[%collapsible]
+.Using the Web Console
+====
+In the top-left corner of the navigation panel, click the current project name to open the
+project selector. Select *`{user}-lab`* from the list.
+
+// SCREENSHOT NEEDED: Project selector dropdown open in Core Platform view with {user}-lab highlighted
+image::../../assets/images/console-guide/lab-02-apps-never-down/19-project-selector-lab.png[Project selector dropdown showing user-lab highlighted and ready to select]
+====

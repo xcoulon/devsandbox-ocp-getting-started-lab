@@ -1,0 +1,18 @@
+= Step 4.1: Make a direct change to the cluster
+:source-highlighter: highlightjs
+
+Scale the API deployment down to 0 replicas directly, bypassing Git:
+
+[source,role="execute",subs="attributes+"]
+----
+oc scale deployment datasphere-api --replicas=0 -n {user}-gitops
+----
+
+[%collapsible]
+.Expected output
+====
+----
+deployment.apps/datasphere-api scaled
+----
+====
+

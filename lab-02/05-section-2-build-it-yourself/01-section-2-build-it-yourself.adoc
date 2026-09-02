@@ -1,0 +1,5 @@
+= Section 2: Build it yourself
+:source-highlighter: highlightjs
+
+Now you know what the resilience features look like. In this section you'll deploy the same
+DataSphere stack in your own project and configure each resilience feature from scratch.

@@ -1,0 +1,13 @@
+= What just happened
+:source-highlighter: highlightjs
+
+When you committed `values.yaml`, Git recorded the change with your username,
+a timestamp, and the commit message you wrote. ArgoCD detected the new commit,
+re-rendered the Helm chart with the updated values, and applied only the resources
+that changed -- in this case, the `datasphere-config` ConfigMap. The API pod
+restarted to pick up the new ConfigMap contents.
+
+Every step is traceable. If you need to roll back, you revert the commit -- ArgoCD
+applies the previous state. No manual intervention, no "I remember running some
+command last week."
+

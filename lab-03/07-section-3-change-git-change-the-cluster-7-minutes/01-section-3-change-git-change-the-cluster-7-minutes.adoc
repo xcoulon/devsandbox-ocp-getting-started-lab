@@ -1,0 +1,10 @@
+= Section 3: Change Git, change the cluster (7 minutes)
+:source-highlighter: highlightjs
+
+The DataSphere network has major hubs across the Americas, Europe, and Asia Pacific.
+The Middle East and Africa region has only regional edge sites -- no major hub.
+You're going to add one.
+
+This is the core GitOps workflow: edit a file in Git, commit it, and the cluster
+updates itself. No `oc apply`. No Helm commands. Just a commit.
+

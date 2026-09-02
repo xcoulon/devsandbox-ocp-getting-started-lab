@@ -1,0 +1,9 @@
+= Learning objectives
+:source-highlighter: highlightjs
+
+By the end of this module, you'll be able to:
+
+* Explain how ReplicaSets maintain pod availability
+* Configure a Horizontal Pod Autoscaler (HPA) for automatic scaling
+* Describe the difference between liveness and readiness probes
+* Demonstrate zero-downtime resilience under pod failure and traffic load

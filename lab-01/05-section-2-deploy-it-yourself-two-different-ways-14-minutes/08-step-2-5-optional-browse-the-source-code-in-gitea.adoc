@@ -1,0 +1,15 @@
+= Step 2.5: (Optional) Browse the source code in Gitea
+:source-highlighter: highlightjs
+
+Your lab environment includes a personal Gitea instance with the DataSphere API source code
+already loaded. Click the *Gitea* tab in the Showroom sidebar.
+
+If you see *Sign In* and *Register* buttons, you are not logged in yet. Click *Sign In* and
+use your lab credentials (`{user}` / `{password}`). After logging in, your repositories are
+listed on the dashboard -- click *datasphere-api*.
+
+You can also open the repository directly in a new tab:
+link:{gitea_url}/{user}/datasphere-api[{gitea_url}/{user}/datasphere-api, window=_blank]
+
+You can skip this step -- the next command pulls the source directly from Gitea.
+

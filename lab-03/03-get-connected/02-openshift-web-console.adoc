@@ -1,0 +1,19 @@
+= OpenShift web console
+:source-highlighter: highlightjs
+
+Click the *Console* tab on the right side of this lab interface.
+
+Log in with these credentials:
+
+* *Username*: `{user}`
+* *Password*: `{password}`
+* *Console URL*: {openshift_console_url}
+
+TIP: If the left navigation panel is not visible after logging in, click the *≡*
+icon in the top-left corner to expand it.
+
+TIP: If a *guided tour* dialog appears, click *Skip tour* to dismiss it.
+
+After logging in, click the perspective switcher in the top-left corner of the navigation
+panel -- it may default to *Developer*. Select *Core platform*.
+

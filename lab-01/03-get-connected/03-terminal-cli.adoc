@@ -1,0 +1,35 @@
+= Terminal (CLI)
+:source-highlighter: highlightjs
+
+Click the *Terminal* tab on the right side of this lab interface. The `oc` CLI is pre-installed
+and ready to use.
+
+Log in to the cluster. When prompted about insecure connections, type `y`:
+
+[source,role="execute",subs="attributes+"]
+----
+oc login {openshift_api_url} --username {user} --password {password}
+----
+
+[%collapsible]
+.Expected output
+====
+[subs="attributes+"]
+----
+The server uses a certificate signed by an unknown authority.
+You can bypass the certificate check, but any data you send to the server could be intercepted by others.
+Use insecure connections? (y/n): y
+
+Login successful.
+
+You have access to the following projects and can switch between them with 'oc project <projectname>':
+
+  * {user}-datasphere
+    {user}-lab
+    {user}-lab-helm
+
+Using project "{user}-datasphere".
+Welcome! See 'oc help' to get started.
+----
+====
+

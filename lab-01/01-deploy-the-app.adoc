@@ -1,0 +1,13 @@
+= Module 1: Deploy the App -- 3 Ways to Get Code Running
+:source-highlighter: highlightjs
+
+There is no single right way to get an application onto OpenShift -- and this lab proves it.
+You'll deploy the DataSphere application three different ways: from a pre-built container image,
+from source code using Source-to-Image, and as a complete multi-component Helm chart. Along
+the way you'll learn the three building blocks that make every OpenShift application work: *Pods*,
+*Services*, and *Routes*.
+
+By the end, you'll have a fully working DataSphere instance -- UI, API, and database --
+deployed from a single Helm chart, and you'll understand exactly what each piece does.
+
+

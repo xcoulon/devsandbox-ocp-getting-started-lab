@@ -1,0 +1,18 @@
+= Module 3: Git Is Your Source of Truth
+:source-highlighter: highlightjs
+
+In Modules 1 and 2, you deployed and operated DataSphere by running commands.
+Those commands work -- but they leave no record of what changed, when, or why.
+If a colleague updates something in the cluster, how do you know? If something
+breaks overnight, how do you roll it back?
+
+GitOps answers those questions by making a Git repository the source of truth
+for the cluster. You declare what you want in Git; a controller called ArgoCD
+watches that repository and keeps the cluster in sync. Every change is a commit.
+Every rollback is a revert. The audit trail is the commit history.
+
+In this lab, you'll deploy DataSphere using GitOps, make a live configuration
+change by editing a file in Gitea, and watch ArgoCD apply it to the cluster
+automatically -- no `oc apply`, no SSH, no deployment scripts.
+
+

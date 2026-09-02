@@ -1,0 +1,26 @@
+= How they connect
+:source-highlighter: highlightjs
+
+[source,mermaid]
+----
+flowchart TB
+    B["Browser"]
+    R["Route\n(datasphere-ui)"]
+    S["Service\n(stable internal IP)"]
+    P1["Pod\n(datasphere-ui-n7rlv)"]
+    P2["Pod\n(datasphere-ui-fgh12)"]:::dashed
+    P3["Pod\n(datasphere-ui-zxv9k)"]:::dashed
+
+    B -->|"HTTPS"| R
+    R --> S
+    S -->|"label selector"| P1
+    S -->|"label selector"| P2
+    S -->|"label selector"| P3
+
+    classDef dashed stroke-dasharray: 5 5
+----
+
+The Route knows which Service to send traffic to.
+The Service knows which Pods to forward requests to via label selectors.
+The Pod runs your container.
+

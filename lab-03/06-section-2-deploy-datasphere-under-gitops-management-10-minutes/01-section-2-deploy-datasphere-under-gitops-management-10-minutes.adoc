@@ -1,0 +1,8 @@
+= Section 2: Deploy DataSphere under GitOps management (10 minutes)
+:source-highlighter: highlightjs
+
+Rather than running `oc` commands, you're going to point ArgoCD at your Gitea
+repository and let it do the deployment. The Helm chart you used in Module 1's
+`helm install` step lives in your `datasphere-gitops` repository in Gitea -- ArgoCD
+just needs to know where to find it.
+
