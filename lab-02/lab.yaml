@@ -1,0 +1,9 @@
+apiVersion: v1alpha1
+kind: Lab
+metadata:
+  name: ocp4-getting-started-module-2
+  displayName: OpenShift 4 Getting Started Module 2
+spec:
+  attributes:
+    module: "2"
+  checkpoints: []
