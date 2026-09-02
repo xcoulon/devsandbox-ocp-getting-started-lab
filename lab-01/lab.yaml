@@ -3,6 +3,9 @@ kind: Lab
 metadata:
   name: ocp4-getting-started-module-1
   displayName: OpenShift 4 Getting Started Module 1
+  description: |
+    This is a description of the first module of the getting started
+    interactive lab. It is *Asciidoc*.
 spec:
   attributes:
     module: "1"
