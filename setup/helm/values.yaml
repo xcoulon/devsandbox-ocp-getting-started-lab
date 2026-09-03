@@ -1,0 +1,87 @@
+imagePullPolicy: IfNotPresent
+
+namespaces:
+  gitea: gitea
+  datasphere: datasphere
+  lab: lab
+  labHelm: lab-helm
+
+podSecurityContext:
+  runAsNonRoot: true
+  seccompProfile:
+    type: RuntimeDefault
+containerSecurityContext:
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop: [ALL]
+
+postgresql:
+  image: docker.io/postgres:16.4-alpine
+  auth:
+    username: gitea
+    password: "" # required
+    database: gitea
+  persistence:
+    size: 5Gi
+    storageClass: ""
+  resources:
+    requests: {cpu: 100m, memory: 256Mi}
+    limits: {cpu: 500m, memory: 512Mi}
+
+gitea:
+  image: docker.io/gitea/gitea:1.22.6-rootless
+  admin:
+    username: gitea-admin
+    password: "" # required
+    email: gitea-admin@example.invalid
+  persistence:
+    size: 5Gi
+    storageClass: ""
+  resources:
+    requests: {cpu: 100m, memory: 256Mi}
+    limits: {cpu: 500m, memory: 512Mi}
+  route:
+    host: ""
+
+datasphere:
+  theme: earth
+  api:
+    image: quay.io/rhpds/datasphere-api:1.4.5
+    replicas: 1
+    extraDatacenters: []
+    resources:
+      requests: {cpu: 25m, memory: 64Mi}
+      limits: {cpu: 100m, memory: 128Mi}
+    hpa:
+      enabled: true
+      minReplicas: 1
+      maxReplicas: 5
+      targetCPUUtilizationPercentage: 50
+  ui:
+    image: quay.io/rhpds/datasphere-ui:1.4.5
+    replicas: 1
+    resources:
+      requests: {cpu: 25m, memory: 64Mi}
+      limits: {cpu: 100m, memory: 128Mi}
+    route:
+      host: ""
+  redis:
+    image: docker.io/redis:7.4.1-alpine
+    resources:
+      requests: {cpu: 50m, memory: 64Mi}
+      limits: {cpu: 100m, memory: 128Mi}
+
+repoSeed:
+  image: docker.io/curlimages/curl:8.11.1
+  archiveUrl: https://github.com/rhpds/ocp4-getting-started-automation/archive/7c4a971b02fab9a91c621a44b1afacb9dd552ffa.tar.gz
+  archiveCommit: 7c4a971b02fab9a91c621a44b1afacb9dd552ffa
+  repositories:
+    - name: datasphere-api
+      sourcePath: datasphere/api
+      private: true
+    - name: datasphere-ui
+      sourcePath: datasphere/ui
+      private: true
+    - name: datasphere-gitops
+      sourcePath: datasphere/gitops
+      private: true

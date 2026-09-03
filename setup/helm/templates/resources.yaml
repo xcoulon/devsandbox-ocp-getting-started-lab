@@ -1,0 +1,586 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: {{ .Values.namespaces.gitea }}
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: {{ .Values.namespaces.datasphere }}
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: {{ .Values.namespaces.lab }}
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: {{ .Values.namespaces.labHelm }}
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: gitea-postgresql-credentials
+  namespace: {{ .Values.namespaces.gitea }}
+type: Opaque
+stringData:
+  GITEA_ADMIN_PASSWORD: {{ required "gitea.admin.password is required" .Values.gitea.admin.password | quote }}
+  POSTGRESQL_PASSWORD: {{ required "postgresql.auth.password is required" .Values.postgresql.auth.password | quote }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgresql
+  namespace: {{ .Values.namespaces.gitea }}
+spec:
+  accessModes: [ReadWriteOnce]
+  resources:
+    requests:
+      storage: {{ .Values.postgresql.persistence.size | quote }}
+  {{- with .Values.postgresql.persistence.storageClass }}
+  storageClassName: {{ . | quote }}
+  {{- end }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: gitea
+  namespace: {{ .Values.namespaces.gitea }}
+spec:
+  accessModes: [ReadWriteOnce]
+  resources:
+    requests:
+      storage: {{ .Values.gitea.persistence.size | quote }}
+  {{- with .Values.gitea.persistence.storageClass }}
+  storageClassName: {{ . | quote }}
+  {{- end }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgresql
+  namespace: {{ .Values.namespaces.gitea }}
+spec:
+  selector:
+    app.kubernetes.io/name: postgresql
+  ports:
+    - name: postgresql
+      port: 5432
+      targetPort: postgresql
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgresql
+  namespace: {{ .Values.namespaces.gitea }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: postgresql
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: postgresql
+    spec:
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: postgresql
+          image: {{ .Values.postgresql.image | quote }}
+          imagePullPolicy: {{ .Values.imagePullPolicy }}
+          securityContext:
+            {{- toYaml .Values.containerSecurityContext | nindent 12 }}
+          ports:
+            - name: postgresql
+              containerPort: 5432
+          env:
+            - name: POSTGRES_USER
+              value: {{ .Values.postgresql.auth.username | quote }}
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: gitea-postgresql-credentials
+                  key: POSTGRESQL_PASSWORD
+            - name: POSTGRES_DB
+              value: {{ .Values.postgresql.auth.database | quote }}
+          resources:
+            {{- toYaml .Values.postgresql.resources | nindent 12 }}
+          readinessProbe:
+            exec:
+              command: ["pg_isready", "-U", {{ .Values.postgresql.auth.username | quote }}, "-d", {{ .Values.postgresql.auth.database | quote }}]
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          livenessProbe:
+            exec:
+              command: ["pg_isready", "-U", {{ .Values.postgresql.auth.username | quote }}, "-d", {{ .Values.postgresql.auth.database | quote }}]
+            initialDelaySeconds: 15
+            periodSeconds: 10
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: postgresql
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gitea
+  namespace: {{ .Values.namespaces.gitea }}
+spec:
+  selector:
+    app.kubernetes.io/name: gitea
+  ports:
+    - name: http
+      port: 3000
+      targetPort: http
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gitea
+  namespace: {{ .Values.namespaces.gitea }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: gitea
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: gitea
+    spec:
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: gitea
+          image: {{ .Values.gitea.image | quote }}
+          imagePullPolicy: {{ .Values.imagePullPolicy }}
+          securityContext:
+            {{- toYaml .Values.containerSecurityContext | nindent 12 }}
+          ports:
+            - name: http
+              containerPort: 3000
+          env:
+            - name: GITEA__database__DB_TYPE
+              value: postgres
+            - name: GITEA__database__HOST
+              value: postgresql:5432
+            - name: GITEA__database__NAME
+              value: {{ .Values.postgresql.auth.database | quote }}
+            - name: GITEA__database__USER
+              value: {{ .Values.postgresql.auth.username | quote }}
+            - name: GITEA__database__PASSWD
+              valueFrom:
+                secretKeyRef:
+                  name: gitea-postgresql-credentials
+                  key: POSTGRESQL_PASSWORD
+            - name: GITEA__database__SSL_MODE
+              value: disable
+            - name: GITEA__security__INSTALL_LOCK
+              value: "true"
+            - name: GITEA__server__ROOT_URL
+              value: {{ if .Values.gitea.route.host }}{{ printf "https://%s/" .Values.gitea.route.host | quote }}{{ else }}"http://gitea:3000/"{{ end }}
+          resources:
+            {{- toYaml .Values.gitea.resources | nindent 12 }}
+          readinessProbe:
+            httpGet:
+              path: /api/v1/version
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /api/v1/version
+              port: http
+            initialDelaySeconds: 20
+            periodSeconds: 10
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/gitea
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: gitea
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: gitea
+  namespace: {{ .Values.namespaces.gitea }}
+spec:
+  {{- with .Values.gitea.route.host }}
+  host: {{ . | quote }}
+  {{- end }}
+  to:
+    kind: Service
+    name: gitea
+  port:
+    targetPort: http
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: datasphere-config
+  namespace: {{ .Values.namespaces.datasphere }}
+data:
+  config.json: |
+    {"theme": {{ .Values.datasphere.theme | quote }}}
+  extra_datacenters.json: |
+    {{ .Values.datasphere.api.extraDatacenters | toJson }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: datasphere-redis
+  namespace: {{ .Values.namespaces.datasphere }}
+spec:
+  selector:
+    app.kubernetes.io/name: datasphere-redis
+  ports:
+    - name: redis
+      port: 6379
+      targetPort: redis
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: datasphere-redis
+  namespace: {{ .Values.namespaces.datasphere }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: datasphere-redis
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: datasphere-redis
+    spec:
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: redis
+          image: {{ .Values.datasphere.redis.image | quote }}
+          imagePullPolicy: {{ .Values.imagePullPolicy }}
+          securityContext:
+            {{- toYaml .Values.containerSecurityContext | nindent 12 }}
+          args: ["redis-server", "--save", "", "--appendonly", "no"]
+          ports:
+            - name: redis
+              containerPort: 6379
+          resources:
+            {{- toYaml .Values.datasphere.redis.resources | nindent 12 }}
+          readinessProbe:
+            tcpSocket:
+              port: redis
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          livenessProbe:
+            tcpSocket:
+              port: redis
+            initialDelaySeconds: 10
+            periodSeconds: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: datasphere-api
+  namespace: {{ .Values.namespaces.datasphere }}
+spec:
+  selector:
+    app.kubernetes.io/name: datasphere-api
+  ports:
+    - name: http
+      port: 8080
+      targetPort: http
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: datasphere-api
+  namespace: {{ .Values.namespaces.datasphere }}
+spec:
+  replicas: {{ .Values.datasphere.api.replicas }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: datasphere-api
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: datasphere-api
+      annotations:
+        checksum/config: {{ dict "theme" .Values.datasphere.theme "extraDatacenters" .Values.datasphere.api.extraDatacenters | toJson | sha256sum }}
+    spec:
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: api
+          image: {{ .Values.datasphere.api.image | quote }}
+          imagePullPolicy: {{ .Values.imagePullPolicy }}
+          securityContext:
+            {{- toYaml .Values.containerSecurityContext | nindent 12 }}
+          ports:
+            - name: http
+              containerPort: 8080
+          env:
+            - name: DATASPHERE_CONFIG_PATH
+              value: /etc/datasphere/config.json
+            - name: REDIS_URL
+              value: redis://datasphere-redis:6379
+          resources:
+            {{- toYaml .Values.datasphere.api.resources | nindent 12 }}
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          volumeMounts:
+            - name: config
+              mountPath: /etc/datasphere
+      volumes:
+        - name: config
+          configMap:
+            name: datasphere-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: datasphere-ui
+  namespace: {{ .Values.namespaces.datasphere }}
+spec:
+  selector:
+    app.kubernetes.io/name: datasphere-ui
+  ports:
+    - name: http
+      port: 8080
+      targetPort: http
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: datasphere-ui
+  namespace: {{ .Values.namespaces.datasphere }}
+spec:
+  replicas: {{ .Values.datasphere.ui.replicas }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: datasphere-ui
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: datasphere-ui
+    spec:
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: ui
+          image: {{ .Values.datasphere.ui.image | quote }}
+          imagePullPolicy: {{ .Values.imagePullPolicy }}
+          securityContext:
+            {{- toYaml .Values.containerSecurityContext | nindent 12 }}
+          ports:
+            - name: http
+              containerPort: 8080
+          resources:
+            {{- toYaml .Values.datasphere.ui.resources | nindent 12 }}
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 5
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: datasphere-ui
+  namespace: {{ .Values.namespaces.datasphere }}
+spec:
+  {{- with .Values.datasphere.ui.route.host }}
+  host: {{ . | quote }}
+  {{- end }}
+  to:
+    kind: Service
+    name: datasphere-ui
+  port:
+    targetPort: http
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+---
+{{- if .Values.datasphere.api.hpa.enabled }}
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: datasphere-api
+  namespace: {{ .Values.namespaces.datasphere }}
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: datasphere-api
+  minReplicas: {{ .Values.datasphere.api.hpa.minReplicas }}
+  maxReplicas: {{ .Values.datasphere.api.hpa.maxReplicas }}
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: {{ .Values.datasphere.api.hpa.targetCPUUtilizationPercentage }}
+{{- end }}
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: gitea-admin-bootstrap
+  namespace: {{ .Values.namespaces.gitea }}
+  annotations:
+    helm.sh/hook: post-install,post-upgrade
+    helm.sh/hook-weight: "-1"
+    helm.sh/hook-delete-policy: before-hook-creation
+spec:
+  backoffLimit: 4
+  template:
+    spec:
+      restartPolicy: OnFailure
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: gitea-admin-bootstrap
+          image: {{ .Values.gitea.image | quote }}
+          imagePullPolicy: {{ .Values.imagePullPolicy }}
+          securityContext:
+            {{- toYaml .Values.containerSecurityContext | nindent 12 }}
+          command: ["/bin/sh", "-ec"]
+          args:
+            - |
+              attempts=0
+              until gitea migrate; do
+                attempts=$((attempts + 1))
+                [ "$attempts" -lt 60 ] || exit 1
+                sleep 2
+              done
+              output=$(gitea admin user create --admin --username "$GITEA_ADMIN_USERNAME" --password "$GITEA_ADMIN_PASSWORD" --email "$GITEA_ADMIN_EMAIL" 2>&1) && exit 0
+              case "$output" in
+                *"already exists"*) exit 0 ;;
+                *) printf '%s\n' "$output" >&2; exit 1 ;;
+              esac
+          env:
+            - name: GITEA_ADMIN_USERNAME
+              value: {{ .Values.gitea.admin.username | quote }}
+            - name: GITEA_ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: gitea-postgresql-credentials
+                  key: GITEA_ADMIN_PASSWORD
+            - name: GITEA_ADMIN_EMAIL
+              value: {{ .Values.gitea.admin.email | quote }}
+            - name: GITEA__database__DB_TYPE
+              value: postgres
+            - name: GITEA__database__HOST
+              value: postgresql:5432
+            - name: GITEA__database__NAME
+              value: {{ .Values.postgresql.auth.database | quote }}
+            - name: GITEA__database__USER
+              value: {{ .Values.postgresql.auth.username | quote }}
+            - name: GITEA__database__PASSWD
+              valueFrom:
+                secretKeyRef:
+                  name: gitea-postgresql-credentials
+                  key: POSTGRESQL_PASSWORD
+            - name: GITEA__database__SSL_MODE
+              value: disable
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: repo-seeding
+  namespace: {{ .Values.namespaces.gitea }}
+  annotations:
+    helm.sh/hook: post-install,post-upgrade
+    helm.sh/hook-weight: "1"
+    helm.sh/hook-delete-policy: before-hook-creation
+spec:
+  backoffLimit: 4
+  template:
+    spec:
+      restartPolicy: OnFailure
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: repo-seeding
+          image: {{ .Values.repoSeed.image | quote }}
+          imagePullPolicy: {{ .Values.imagePullPolicy }}
+          securityContext:
+            {{- toYaml .Values.containerSecurityContext | nindent 12 }}
+          command: ["/bin/sh", "-ec"]
+          args:
+            - |
+              until curl --fail --silent --show-error http://gitea:3000/api/v1/version >/dev/null; do sleep 2; done
+              workdir=$(mktemp -d)
+              trap 'rm -rf "$workdir"' EXIT
+              curl --fail --location --silent --show-error --output "$workdir/source.tar.gz" "$REPO_SEED_ARCHIVE_URL"
+              tar -xzf "$workdir/source.tar.gz" -C "$workdir"
+              source_root=$(find "$workdir" -mindepth 1 -maxdepth 1 -type d -print -quit)
+              [ -n "$source_root" ] || exit 1
+
+              seed_repo() {
+                repo=$1 source_path=$2 create_payload=$3
+                source_dir="$source_root/$source_path"
+                [ -d "$source_dir" ] || return 1
+                repo_url="http://gitea:3000/api/v1/repos/$GITEA_ADMIN_USERNAME/$repo"
+                status=$(curl --silent --show-error --output /tmp/response --write-out '%{http_code}' \
+                  --user "$GITEA_ADMIN_USERNAME:$GITEA_ADMIN_PASSWORD" "$repo_url" || true)
+                case "$status" in
+                  200) return ;;
+                  404) ;;
+                  *) cat /tmp/response >&2; return 1 ;;
+                esac
+                status=$(curl --silent --show-error --output /tmp/response --write-out '%{http_code}' \
+                  --user "$GITEA_ADMIN_USERNAME:$GITEA_ADMIN_PASSWORD" \
+                  --header 'Content-Type: application/json' --request POST --data "$create_payload" \
+                  http://gitea:3000/api/v1/user/repos || true)
+                case "$status" in
+                  201) ;;
+                  409) return ;;
+                  *) cat /tmp/response >&2; return 1 ;;
+                esac
+                find "$source_dir" -type f | while IFS= read -r file; do
+                  relative_path=${file#"$source_dir/"}
+                  content=$(base64 < "$file" | tr -d '\n')
+                  printf '{"content":"%s","message":"Seed from %s"}' "$content" "$REPO_SEED_COMMIT" | \
+                    curl --fail --silent --show-error --user "$GITEA_ADMIN_USERNAME:$GITEA_ADMIN_PASSWORD" \
+                      --header 'Content-Type: application/json' --request PUT --data-binary @- \
+                      "$repo_url/contents/$relative_path" >/dev/null
+                done
+              }
+              {{- range .Values.repoSeed.repositories }}
+              seed_repo {{ .name | quote }} {{ .sourcePath | quote }} {{ printf "{\"name\": %s, \"private\": %t, \"default_branch\": \"main\"}" (.name | quote) .private | squote }}
+              {{- end }}
+          env:
+            - name: REPO_SEED_ARCHIVE_URL
+              value: {{ .Values.repoSeed.archiveUrl | quote }}
+            - name: REPO_SEED_COMMIT
+              value: {{ .Values.repoSeed.archiveCommit | quote }}
+            - name: GITEA_ADMIN_USERNAME
+              value: {{ .Values.gitea.admin.username | quote }}
+            - name: GITEA_ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: gitea-postgresql-credentials
+                  key: GITEA_ADMIN_PASSWORD

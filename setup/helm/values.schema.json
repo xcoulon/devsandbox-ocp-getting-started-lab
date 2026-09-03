@@ -1,0 +1,41 @@
+{
+  "properties": {
+    "namespaces": {
+      "type": "object",
+      "properties": {
+        "gitea": {
+          "type": "string",
+          "title": "gitea namespace",
+          "description": "Namespace name for Gitea deployment",
+          "x-interactive-labs": {
+            "kind": "namespace-name"
+          }
+        },
+        "dataspehere": {
+          "type": "string",
+          "title": "datasphere namespace",
+          "description": "Namespace name for Datasphere application deployment",
+          "x-interactive-labs": {
+            "kind": "namespace-name"
+          }
+        },
+        "lab": {
+          "type": "string",
+          "title": "lab namespace",
+          "description": "Namespace name for lab experimentation",
+          "x-interactive-labs": {
+            "kind": "namespace-name"
+          }
+        },
+        "lab-helm": {
+          "type": "string",
+          "title": "lab helm namespace",
+          "description": "Namespace name for lab experimentation using Helm",
+          "x-interactive-labs": {
+            "kind": "namespace-name"
+          }
+        }
+      }
+    }
+  }
+}
