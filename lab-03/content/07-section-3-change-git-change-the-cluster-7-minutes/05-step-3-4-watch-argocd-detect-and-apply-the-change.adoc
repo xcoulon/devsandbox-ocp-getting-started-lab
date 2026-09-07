@@ -9,12 +9,12 @@ trigger an immediate check.
 Within seconds of the refresh, the status changes to *OutOfSync* -- ArgoCD has
 detected that the Git state no longer matches the cluster state.
 
-image::../../assets/images/lab-03-07-argocd-out-of-sync.png[ArgoCD showing OutOfSync status after the Gitea commit]
+image::../../../assets/images/lab-03-07-argocd-out-of-sync.png[ArgoCD showing OutOfSync status after the Gitea commit]
 
 With auto-sync enabled, ArgoCD immediately begins reconciling. You'll see the
 status move through *Syncing* and back to *Synced*. The ConfigMap change triggers
 a rolling restart of the API pod: ArgoCD handles the restart automatically as part
 of the sync.
 
-image::../../assets/images/lab-03-10-argocd-synced-after-change.png[ArgoCD showing Synced and Healthy status after the MEA Hub commit was applied]
+image::../../../assets/images/lab-03-10-argocd-synced-after-change.png[ArgoCD showing Synced and Healthy status after the MEA Hub commit was applied]
 

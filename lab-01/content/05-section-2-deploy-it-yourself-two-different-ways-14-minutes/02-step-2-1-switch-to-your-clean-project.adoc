@@ -17,7 +17,7 @@ Click the perspective switcher in the upper left of the navigation panel and sel
 In the Project dropdown at the top of the content area, choose *`{user}-lab`*.
 
 // SCREENSHOT NEEDED: Developer perspective Topology view showing {user}-lab selected and "No resources found" / empty state
-image::../../assets/images/console-guide/lab-01-deploy-the-app/08b-developer-perspective-empty-lab.png[Developer perspective showing the empty user-lab project in Topology view]
+image::../../../assets/images/console-guide/lab-01-deploy-the-app/08b-developer-perspective-empty-lab.png[Developer perspective showing the empty user-lab project in Topology view]
 ====
 
 This project is empty -- a clean workspace for you to build in.

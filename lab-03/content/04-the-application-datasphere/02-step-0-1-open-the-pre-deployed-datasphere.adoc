@@ -20,7 +20,7 @@ In the left navigation, expand *Networking* and click *Routes*.
 Click the URL in the *Location* column for `datasphere-ui`.
 
 // SCREENSHOT NEEDED: Networking → Routes in {user}-datasphere showing the datasphere-ui route with its URL in the Location column
-image::../../assets/images/lab-03-routes-datasphere-ui.png[Routes list in user-datasphere showing datasphere-ui route and URL]
+image::../../../assets/images/lab-03-routes-datasphere-ui.png[Routes list in user-datasphere showing datasphere-ui route and URL]
 ====
 
 In this lab you won't run `oc` commands or `helm install` to deploy DataSphere.

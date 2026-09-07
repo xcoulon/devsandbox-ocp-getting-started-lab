@@ -74,7 +74,7 @@ Slide back to *0%*. The HPA scales down over about 20 seconds. Press `Ctrl+C` to
 In the left navigation, click *Workloads* → *HorizontalPodAutoscalers*. Click *datasphere-api*.
 
 // SCREENSHOT NEEDED: Workloads → HorizontalPodAutoscalers → datasphere-api detail page, showing Min/Max replicas, Current replicas, and the Conditions section
-image::../../assets/images/console-guide/lab-02-apps-never-down/09-hpa-details.png[HPA detail page showing current replicas, desired replicas, min and max settings]
+image::../../../assets/images/console-guide/lab-02-apps-never-down/09-hpa-details.png[HPA detail page showing current replicas, desired replicas, min and max settings]
 
 This page shows *Current replicas* and *Desired replicas* in real time.
 
@@ -82,7 +82,7 @@ Open the `datasphere-api` Deployment (*Workloads* → *Deployments* → *datasph
 click the *Metrics* tab for a live CPU graph.
 
 // SCREENSHOT NEEDED: datasphere-api Deployment → Metrics tab showing CPU usage graph (capture while load is being applied so the spike is visible)
-image::../../assets/images/console-guide/lab-02-apps-never-down/10-deployment-api-metrics.png[datasphere-api Metrics tab showing the CPU usage graph]
+image::../../../assets/images/console-guide/lab-02-apps-never-down/10-deployment-api-metrics.png[datasphere-api Metrics tab showing the CPU usage graph]
 
 Drag the *Simulated Traffic* slider in the DataSphere app to about *50%* and watch the
 *Current replicas* count climb on the HPA page as CPU crosses the threshold. Slide back

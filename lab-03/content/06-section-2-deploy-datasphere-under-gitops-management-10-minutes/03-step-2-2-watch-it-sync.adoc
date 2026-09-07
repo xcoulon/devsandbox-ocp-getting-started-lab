@@ -5,18 +5,18 @@ After creation, the Application tile appears on the dashboard. The status shows
 *Syncing* as ArgoCD fetches your repository, renders the Helm chart, and applies
 the resulting resources to `{user}-gitops`.
 
-image::../../assets/images/lab-03-03-argocd-syncing.png[ArgoCD application tile showing Syncing status]
+image::../../../assets/images/lab-03-03-argocd-syncing.png[ArgoCD application tile showing Syncing status]
 
 Within about 60 seconds, the status changes to *Synced* and *Healthy*:
 
-image::../../assets/images/lab-03-04-argocd-synced.png[ArgoCD application tile showing Synced and Healthy status]
+image::../../../assets/images/lab-03-04-argocd-synced.png[ArgoCD application tile showing Synced and Healthy status]
 
 Click the *datasphere* application tile to open its detail view. You'll see every
 resource ArgoCD deployed: 3 Deployments, 3 Services, 1 Route, 1 HPA, and the
 ConfigMaps that configure them. This is your full DataSphere stack, declared in
 Git and reconciled here automatically.
 
-image::../../assets/images/lab-03-05-argocd-resource-tree.png[ArgoCD resource tree showing all DataSphere resources]
+image::../../../assets/images/lab-03-05-argocd-resource-tree.png[ArgoCD resource tree showing all DataSphere resources]
 
 While you're here, notice the left sidebar navigation:
 

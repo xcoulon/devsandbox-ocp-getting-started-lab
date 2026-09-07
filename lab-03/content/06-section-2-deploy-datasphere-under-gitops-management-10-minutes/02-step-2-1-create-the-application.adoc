@@ -44,5 +44,5 @@ You'll see what Self Heal does in Section 4.
 
 Scroll down and click *Create*.
 
-image::../../assets/images/lab-03-02-argocd-new-app-form.png[ArgoCD new application form filled in with datasphere details]
+image::../../../assets/images/lab-03-02-argocd-new-app-form.png[ArgoCD new application form filled in with datasphere details]
 

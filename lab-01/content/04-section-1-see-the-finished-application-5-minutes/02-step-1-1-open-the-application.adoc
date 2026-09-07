@@ -25,12 +25,12 @@ Copy the URL from the `HOST/PORT` column and open it in a new browser tab.
 In the Core Platform view, click *`{user}-datasphere`* in the project list to open it.
 
 // SCREENSHOT NEEDED: Core Platform Projects list with {user}-datasphere highlighted/selected, showing the click target
-image::../../assets/images/console-guide/lab-01-deploy-the-app/01-project-list-select-datasphere.png[Core Platform project list with user-datasphere highlighted]
+image::../../../assets/images/console-guide/lab-01-deploy-the-app/01-project-list-select-datasphere.png[Core Platform project list with user-datasphere highlighted]
 
 In the left navigation, expand *Networking* and click *Routes*.
 
 // SCREENSHOT NEEDED: Networking → Routes in {user}-datasphere showing datasphere-ui route with the URL in the Location column
-image::../../assets/images/console-guide/lab-01-deploy-the-app/01b-routes-datasphere-ui.png[Routes list showing the datasphere-ui route and its URL in the Location column]
+image::../../../assets/images/console-guide/lab-01-deploy-the-app/01b-routes-datasphere-ui.png[Routes list showing the datasphere-ui route and its URL in the Location column]
 
 Click the URL in the *Location* column to open the application in a new browser tab.
 ====
@@ -39,7 +39,7 @@ You'll see a live map of global datacenter sites. Click a site to toggle its sta
 watch the map respond in real time.
 
 // SCREENSHOT NEEDED: DataSphere app in the browser showing the live world map with green datacenter dots
-image::../../assets/images/console-guide/lab-01-deploy-the-app/01c-datasphere-app-live-map.png[DataSphere application showing the live world map with datacenter sites]
+image::../../../assets/images/console-guide/lab-01-deploy-the-app/01c-datasphere-app-live-map.png[DataSphere application showing the live world map with datacenter sites]
 
 TIP: Try to keep the Showroom lab interface and the DataSphere application visible side by side.
 You'll be switching between them throughout the lab.

@@ -16,7 +16,7 @@ TIP: If a *guided tour* dialog appears, click *Skip tour* to dismiss it.
 After logging in, click the perspective switcher in the top-left corner of the navigation
 panel -- it may default to *Developer*. Select *Core platform*.
 
-image::../../assets/images/console-guide/01-core-platform-projects.png[Core Platform perspective showing the student projects list]
+image::../../../assets/images/console-guide/01-core-platform-projects.png[Core Platform perspective showing the student projects list]
 
 You will see 2 projects: `{user}-datasphere` and `{user}-lab`.
 Click *`{user}-datasphere`* to open it.

@@ -47,7 +47,7 @@ and select *{user}-gitops*.
 
 In the left navigation, click *Workloads* → *Pods*.
 
-image::../../assets/images/lab-03-06-pods-running-gitops-lab.png[Pods list in the gitops project showing all 3 DataSphere pods in Running status]
+image::../../../assets/images/lab-03-06-pods-running-gitops-lab.png[Pods list in the gitops project showing all 3 DataSphere pods in Running status]
 
 You'll see 8 pods in total. The 5 `argocd-*` pods are your personal ArgoCD
 instance -- it lives in the same project so it can manage resources here

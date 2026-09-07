@@ -3,7 +3,7 @@
 
 Click `values.yaml` in the file list.
 
-image::../../assets/images/lab-03-09-gitea-values-yaml-edit.png[Gitea file view showing values.yaml with the pencil edit icon in the top-right corner]
+image::../../../assets/images/lab-03-09-gitea-values-yaml-edit.png[Gitea file view showing values.yaml with the pencil edit icon in the top-right corner]
 
 Click the *pencil icon* (Edit this file) in the top-right corner of the file view.
 

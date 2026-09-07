@@ -48,7 +48,7 @@ Go to *Workloads* → *Pods* and watch the `datasphere-api-*` pods. Within about
 . The *Restarts* counter increments: the liveness probe restarted the container
 
 // SCREENSHOT NEEDED: Workloads → Pods showing datasphere-api pods — one pod with Restarts = 1 (or showing 0/1 Ready transitioning), others still Running
-image::../../assets/images/console-guide/lab-02-apps-never-down/11-pods-api-probe-restart.png[Pods list showing one datasphere-api pod with Restarts incremented to 1]
+image::../../../assets/images/console-guide/lab-02-apps-never-down/11-pods-api-probe-restart.png[Pods list showing one datasphere-api pod with Restarts incremented to 1]
 
 TIP: Click the restarted API pod name and open the *Events* tab to see the liveness probe
 failure events that triggered the restart.

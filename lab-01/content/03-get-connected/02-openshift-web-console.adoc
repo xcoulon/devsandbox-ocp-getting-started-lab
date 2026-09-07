@@ -18,5 +18,5 @@ After logging in, click the perspective switcher in the top-left corner of the n
 panel -- it may default to *Developer*. Select *Core platform*.
 
 // SCREENSHOT NEEDED: Core Platform perspective showing the 3 student projects (datasphere, lab, lab-helm)
-image::../../assets/images/console-guide/01-core-platform-projects.png[Core Platform perspective showing all student projects]
+image::../../../assets/images/console-guide/01-core-platform-projects.png[Core Platform perspective showing all student projects]
 

@@ -66,6 +66,6 @@ After the `helm install` completes, click *Helm* in the left navigation. The *da
 release appears with *Status: deployed* and *Revision: 1*.
 
 // SCREENSHOT NEEDED: Helm Releases page in {user}-lab-helm showing the datasphere release with Status: deployed and Revision: 1
-image::../../assets/images/console-guide/lab-01-deploy-the-app/13-helm-releases-deployed.png[Helm Releases page showing the datasphere release deployed at Revision 1]
+image::../../../assets/images/console-guide/lab-01-deploy-the-app/13-helm-releases-deployed.png[Helm Releases page showing the datasphere release deployed at Revision 1]
 ====
 

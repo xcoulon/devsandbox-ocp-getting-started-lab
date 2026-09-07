@@ -19,7 +19,7 @@ In *Topology*, all three components appear together -- UI, API, and Redis -- dep
 single Helm release.
 
 // SCREENSHOT NEEDED: Topology view in {user}-lab-helm showing datasphere-ui, datasphere-api, AND datasphere-redis all deployed with solid blue rings (3 components from the Helm chart)
-image::../../assets/images/console-guide/lab-01-deploy-the-app/14-topology-helm-all-three.png[Topology view showing datasphere-ui, datasphere-api, and datasphere-redis all deployed by the Helm chart]
+image::../../../assets/images/console-guide/lab-01-deploy-the-app/14-topology-helm-all-three.png[Topology view showing datasphere-ui, datasphere-api, and datasphere-redis all deployed by the Helm chart]
 
 Click the *open URL* icon on `datasphere-ui` to open the application.
 ====

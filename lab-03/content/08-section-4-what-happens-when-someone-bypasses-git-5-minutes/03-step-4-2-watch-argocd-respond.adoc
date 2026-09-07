@@ -40,7 +40,7 @@ datasphere-ui-597f67c7bc-xxxxx      1/1     Running   0          15m
 In the console, switch to the *{user}-gitops* project and click
 *Workloads* → *Pods*. Watch the `datasphere-api` pod return to *Running* status.
 
-image::../../assets/images/lab-03-12-console-api-pod-restored.png[Pods list showing datasphere-api back in Running status after ArgoCD Self Heal restored it]
+image::../../../assets/images/lab-03-12-console-api-pod-restored.png[Pods list showing datasphere-api back in Running status after ArgoCD Self Heal restored it]
 ====
 
 The API pod is back. You didn't touch it -- ArgoCD matched the cluster to Git.

@@ -90,7 +90,7 @@ In the left navigation, click *+Add*, then click *Import from Git*.
 . Click *Create*.
 
 // SCREENSHOT NEEDED: Import from Git form showing Gitea URL pasted, Builder Image selected (Python), Application=No Application Group, Name=datasphere-api, Create Route unchecked
-image::../../assets/images/console-guide/lab-01-deploy-the-app/10-import-from-git-form.png[Import from Git form with Gitea datasphere-api URL, Builder Image selected, No Application Group, and Create Route unchecked]
+image::../../../assets/images/console-guide/lab-01-deploy-the-app/10-import-from-git-form.png[Import from Git form with Gitea datasphere-api URL, Builder Image selected, No Application Group, and Create Route unchecked]
 
 To watch the build progress:
 
@@ -99,7 +99,7 @@ To watch the build progress:
 . Select the *Builds* tab, click the build name, then click *Logs*.
 
 // SCREENSHOT NEEDED: Build Logs page for datasphere-api-1 showing the S2I build output with pip install lines and "Push successful" at the end
-image::../../assets/images/console-guide/lab-01-deploy-the-app/10b-build-logs-datasphere-api.png[Build logs page showing S2I build output including pip install and Push successful]
+image::../../../assets/images/console-guide/lab-01-deploy-the-app/10b-build-logs-datasphere-api.png[Build logs page showing S2I build output including pip install and Push successful]
 
 When the build shows *Complete*, the Deployment starts automatically.
 ====

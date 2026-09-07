@@ -26,5 +26,5 @@ In the top-left corner of the navigation panel, click the current project name t
 project selector. Select *`{user}-lab`* from the list.
 
 // SCREENSHOT NEEDED: Project selector dropdown open in Core Platform view with {user}-lab highlighted
-image::../../assets/images/console-guide/lab-02-apps-never-down/19-project-selector-lab.png[Project selector dropdown showing user-lab highlighted and ready to select]
+image::../../../assets/images/console-guide/lab-02-apps-never-down/19-project-selector-lab.png[Project selector dropdown showing user-lab highlighted and ready to select]
 ====

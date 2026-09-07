@@ -22,7 +22,7 @@ builder used in Step 2.6 and set the icon automatically.
 Click the *open URL* icon (the arrow-in-box in the top-right corner) on the `datasphere-ui`
 node to open the application.
 
-image::../../assets/images/console-guide/lab-01-deploy-the-app/12-topology-s2i-api-deployed.png[Topology view showing datasphere-ui and datasphere-api both deployed with the open URL icon on datasphere-ui]
+image::../../../assets/images/console-guide/lab-01-deploy-the-app/12-topology-s2i-api-deployed.png[Topology view showing datasphere-ui and datasphere-api both deployed with the open URL icon on datasphere-ui]
 ====
 
 The map is now populated with datacenter sites. You didn't reconfigure the UI. You didn't update

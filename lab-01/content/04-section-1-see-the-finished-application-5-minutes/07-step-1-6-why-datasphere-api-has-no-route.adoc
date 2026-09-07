@@ -31,7 +31,7 @@ In the left navigation, click *Services*. The list shows three Services:
 exists: `datasphere-ui`.
 
 // SCREENSHOT NEEDED: Routes page in {user}-datasphere showing only datasphere-ui — no route for datasphere-api or redis
-image::../../assets/images/console-guide/lab-01-deploy-the-app/08-routes-one-only.png[Routes list showing only the datasphere-ui route — no route for datasphere-api or redis]
+image::../../../assets/images/console-guide/lab-01-deploy-the-app/08-routes-one-only.png[Routes list showing only the datasphere-ui route — no route for datasphere-api or redis]
 
 Three Services, but only one Route. The API and Redis are reachable inside the cluster
 by Service name, but only `datasphere-ui` has a Route for external access.

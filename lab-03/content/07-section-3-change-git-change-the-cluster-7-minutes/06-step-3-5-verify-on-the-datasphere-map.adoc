@@ -5,7 +5,7 @@ Reload the link:https://datasphere-ui-{user}-gitops.{openshift_cluster_ingress_d
 Backbone arcs connect Nairobi to all other major hubs globally.
 
 // SCREENSHOT NEEDED: DataSphere app showing the MEA Hub (Nairobi) as a new major hub in East Africa with backbone arcs connecting it to other major hubs
-image::../../assets/images/lab-03-datasphere-mea-hub.png[DataSphere map showing the new MEA Hub major datacenter in Nairobi with backbone arcs to other major hubs]
+image::../../../assets/images/lab-03-datasphere-mea-hub.png[DataSphere map showing the new MEA Hub major datacenter in Nairobi with backbone arcs to other major hubs]
 
 You made 1 commit. ArgoCD handled the rest.
 

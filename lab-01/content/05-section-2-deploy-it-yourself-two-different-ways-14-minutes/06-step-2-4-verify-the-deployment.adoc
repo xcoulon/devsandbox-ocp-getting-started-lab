@@ -29,7 +29,7 @@ In *Topology*, click the *open URL* icon (the arrow-in-box icon in the top-right
 the `datasphere-ui` node) to open the application in a new browser tab.
 
 // SCREENSHOT NEEDED: Topology view showing the datasphere-ui node with an arrow or callout pointing to the open URL icon in its top-right corner
-image::../../assets/images/console-guide/lab-01-deploy-the-app/09b-topology-datasphere-ui-open-url.png[Topology view showing datasphere-ui node with the open URL icon highlighted]
+image::../../../assets/images/console-guide/lab-01-deploy-the-app/09b-topology-datasphere-ui-open-url.png[Topology view showing datasphere-ui node with the open URL icon highlighted]
 ====
 
 The DataSphere UI loads -- but the map is empty. No datacenter sites, no status data.

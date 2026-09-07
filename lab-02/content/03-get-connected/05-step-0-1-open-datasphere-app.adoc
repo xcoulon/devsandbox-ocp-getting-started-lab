@@ -50,7 +50,7 @@ page and select *`{user}-datasphere`*.
 In the left navigation, expand *Networking* and click *Routes*.
 
 // SCREENSHOT NEEDED: Networking → Routes in {user}-datasphere, showing datasphere-ui route with URL in Location column
-image::../../assets/images/console-guide/lab-02-apps-never-down/01-routes-datasphere-ui.png[Routes list showing the datasphere-ui route with its URL in the Location column]
+image::../../../assets/images/console-guide/lab-02-apps-never-down/01-routes-datasphere-ui.png[Routes list showing the datasphere-ui route with its URL in the Location column]
 
 Click the URL in the *Location* column to open the DataSphere app in a new browser tab.
 ====

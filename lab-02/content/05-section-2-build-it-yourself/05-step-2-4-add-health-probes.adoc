@@ -66,7 +66,7 @@ oc describe deployment datasphere-api | grep -E "Liveness:|Readiness:"
 . On the *datasphere-api* Deployment detail page, click *Actions* → *Add Health Checks*.
 
 // SCREENSHOT NEEDED: Actions → Add Health Checks page on datasphere-api Deployment, showing the Liveness, Readiness, and Startup probe sections before filling them in
-image::../../assets/images/console-guide/lab-02-apps-never-down/16-add-health-checks.png[Add health checks page showing Liveness, Readiness, and Startup probe sections]
+image::../../../assets/images/console-guide/lab-02-apps-never-down/16-add-health-checks.png[Add health checks page showing Liveness, Readiness, and Startup probe sections]
 
 . Click *+ Add Liveness probe* and fill in:
 +
@@ -90,7 +90,7 @@ Click the *✓* (checkmark) icon at the bottom of the probe section to confirm i
 Click the *✓* (checkmark) icon to confirm this probe as well.
 
 // SCREENSHOT NEEDED: Add Health Checks page with both Liveness (HTTP GET /health, port 8080, delay 10s, period 10s, failure 3) and Readiness (HTTP GET /health, port 8080, delay 5s, period 5s) filled in, before clicking Add
-image::../../assets/images/console-guide/lab-02-apps-never-down/17-probes-configured.png[Add Health Checks page showing both liveness and readiness probes filled in before clicking Add]
+image::../../../assets/images/console-guide/lab-02-apps-never-down/17-probes-configured.png[Add Health Checks page showing both liveness and readiness probes filled in before clicking Add]
 
 . Click *Add*.
 ====

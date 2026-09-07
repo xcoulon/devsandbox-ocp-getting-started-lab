@@ -35,12 +35,12 @@ key fields: the public hostname, TLS termination type, and which Service the Rou
 ====
 In the left navigation, click *Routes*.
 
-image::../../assets/images/console-guide/lab-01-deploy-the-app/06-routes-list.png[Routes list showing only the datasphere-ui route with Accepted status and its public URL]
+image::../../../assets/images/console-guide/lab-01-deploy-the-app/06-routes-list.png[Routes list showing only the datasphere-ui route with Accepted status and its public URL]
 
 Notice there is only *one* Route: `datasphere-ui`. The API and Redis have Services for internal
 communication but no external Route. Click *datasphere-ui* to see the details.
 
-image::../../assets/images/console-guide/lab-01-deploy-the-app/07-route-ui-details.png[Route detail page for datasphere-ui showing public URL, TLS termination edge, and target port 8080]
+image::../../../assets/images/console-guide/lab-01-deploy-the-app/07-route-ui-details.png[Route detail page for datasphere-ui showing public URL, TLS termination edge, and target port 8080]
 
 The *Location* field is the public URL. OpenShift generates the hostname and manages TLS
 automatically -- you only need to configure further if you want to customize your TLS strategy.

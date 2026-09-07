@@ -80,7 +80,7 @@ datasphere-api   Deployment/datasphere-api   cpu: 8%/50%          2         5   
 . In *Workloads* → *Deployments*, click *datasphere-api*, then click *Actions* → *Edit resource limits*.
 
 // SCREENSHOT NEEDED: Actions → Edit resource limits dialog on datasphere-api Deployment with CPU/Memory Request and Limit fields filled in (25m/100m CPU, 64Mi/128Mi memory)
-image::../../assets/images/console-guide/lab-02-apps-never-down/14-edit-resource-limits.png[Edit resource limits dialog showing CPU and Memory Request and Limit fields]
+image::../../../assets/images/console-guide/lab-02-apps-never-down/14-edit-resource-limits.png[Edit resource limits dialog showing CPU and Memory Request and Limit fields]
 
 . Set these values and click *Save*:
 +
@@ -92,7 +92,7 @@ image::../../assets/images/console-guide/lab-02-apps-never-down/14-edit-resource
 . Click *Actions* → *Add HorizontalPodAutoscaler*.
 
 // SCREENSHOT NEEDED: Actions → Add HorizontalPodAutoscaler form on datasphere-api, filled in with Name=datasphere-api, Min=2, Max=5, CPU=50
-image::../../assets/images/console-guide/lab-02-apps-never-down/15-add-hpa-form.png[Add HorizontalPodAutoscaler form showing Name, Minimum Pods, Maximum Pods and CPU Utilization fields]
+image::../../../assets/images/console-guide/lab-02-apps-never-down/15-add-hpa-form.png[Add HorizontalPodAutoscaler form showing Name, Minimum Pods, Maximum Pods and CPU Utilization fields]
 
 . Fill in the form and click *Save*:
 +
@@ -137,7 +137,7 @@ Watch the HPA details page (*Workloads* → *HorizontalPodAutoscalers* → *data
 The *Current replicas* count climbs as CPU crosses the threshold.
 
 // SCREENSHOT NEEDED: HPA details page while scaled up — showing Current replicas > 2, Desired replicas climbing, and Last scale time updated
-image::../../assets/images/console-guide/lab-02-apps-never-down/20-hpa-scaled-up.png[HPA detail page showing Current replicas at 4 or 5 with Last scale time updated after load was applied]
+image::../../../assets/images/console-guide/lab-02-apps-never-down/20-hpa-scaled-up.png[HPA detail page showing Current replicas at 4 or 5 with Last scale time updated after load was applied]
 
 Slide back to *0%* when done.
 ====

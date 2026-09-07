@@ -71,18 +71,18 @@ oc get route datasphere-ui
 +
 [source,yaml,role="copypaste"]
 ----
-include::../../partials/datasphere-lab-manifests.yaml[]
+include::../../../partials/datasphere-lab-manifests.yaml[]
 ----
 +
 . Click *Create*.
 
 // SCREENSHOT NEEDED: Import YAML editor (⊕ button) in {user}-lab with DataSphere manifests pasted in, Create button visible at bottom
-image::../../assets/images/console-guide/lab-02-apps-never-down/12-import-yaml-datasphere.png[Import YAML editor with DataSphere manifests pasted in and Create button visible]
+image::../../../assets/images/console-guide/lab-02-apps-never-down/12-import-yaml-datasphere.png[Import YAML editor with DataSphere manifests pasted in and Create button visible]
 
 When all resources show *Created* status:
 
 // SCREENSHOT NEEDED: Post-create resource list showing all DataSphere resources (Deployments, Services, Route, ConfigMap) with green Created status
-image::../../assets/images/console-guide/lab-02-apps-never-down/13-resources-created.png[Resources created list showing all DataSphere resources with green Created status]
+image::../../../assets/images/console-guide/lab-02-apps-never-down/13-resources-created.png[Resources created list showing all DataSphere resources with green Created status]
 
 Go to *Networking* → *Routes* and click the `datasphere-ui` URL to open the app. Wait for
 all pods to show `1/1` in *Workloads* → *Pods* before continuing.

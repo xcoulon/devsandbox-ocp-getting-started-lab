@@ -11,7 +11,7 @@ what's declared in Git. When you tell ArgoCD about a Git repository, it creates 
 *Application* -- a link between a Git source and a cluster destination. ArgoCD polls
 that source on a regular interval and applies any changes it finds.
 
-image::../../assets/images/lab-03-01-argocd-empty.png[ArgoCD dashboard showing no applications]
+image::../../../assets/images/lab-03-01-argocd-empty.png[ArgoCD dashboard showing no applications]
 
 Your ArgoCD instance manages only your own namespaces -- it cannot see or affect
 other students' resources. Let's give it something to manage.

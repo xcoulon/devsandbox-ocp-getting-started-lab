@@ -59,7 +59,7 @@ NOTE: If you see no output, open the application URL in your browser first, then
 ====
 Click the name of the `datasphere-ui-*` pod to open its detail page.
 
-image::../../assets/images/console-guide/lab-01-deploy-the-app/03-ui-pod-details.png[Pod detail page for datasphere-ui showing Running status, labels (app=datasphere, component=ui), and pod IP]
+image::../../../assets/images/console-guide/lab-01-deploy-the-app/03-ui-pod-details.png[Pod detail page for datasphere-ui showing Running status, labels (app=datasphere, component=ui), and pod IP]
 
 Notice the *Labels* section: `app=datasphere` and `component=ui`. These labels are how the
 Service finds this pod.

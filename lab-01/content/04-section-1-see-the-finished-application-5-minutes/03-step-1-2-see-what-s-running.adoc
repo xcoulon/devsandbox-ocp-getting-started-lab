@@ -56,7 +56,7 @@ from OpenShift's own internal components, not from DataSphere, and can be ignore
 ====
 In the left navigation, expand *Workloads* and click *Pods*.
 
-image::../../assets/images/console-guide/lab-01-deploy-the-app/02-pods-list-all-running.png[Pods list showing all 3 DataSphere pods running]
+image::../../../assets/images/console-guide/lab-01-deploy-the-app/02-pods-list-all-running.png[Pods list showing all 3 DataSphere pods running]
 
 You'll see 3 pods: `datasphere-api`, `datasphere-redis`, and `datasphere-ui` -- all *Running*
 with *1/1* Ready.

@@ -9,13 +9,13 @@ Click the *Gitea* tab on the right side of this lab interface and log in:
 Once logged in, your repositories are listed on the dashboard. Click *datasphere-gitops*.
 
 // SCREENSHOT NEEDED: Gitea dashboard after login showing the user's repositories with datasphere-gitops visible
-image::../../assets/images/lab-03-gitea-dashboard.png[Gitea dashboard showing datasphere-gitops repository in the user's repo list]
+image::../../../assets/images/lab-03-gitea-dashboard.png[Gitea dashboard showing datasphere-gitops repository in the user's repo list]
 
 TIP: You can also go directly to your repository:
 link:{gitea_url}/{user}/datasphere-gitops[{gitea_url}/{user}/datasphere-gitops, window=_blank]
 
 // SCREENSHOT NEEDED: Gitea repository view for {user}/datasphere-gitops showing the file list (values.yaml visible)
-image::../../assets/images/lab-03-gitea-repo.png[Gitea datasphere-gitops repository showing values.yaml in the file list]
+image::../../../assets/images/lab-03-gitea-repo.png[Gitea datasphere-gitops repository showing values.yaml in the file list]
 
 This is the Helm chart that ArgoCD used to deploy DataSphere. ArgoCD watches
 this repository directly -- any edits you commit here are picked up on the next

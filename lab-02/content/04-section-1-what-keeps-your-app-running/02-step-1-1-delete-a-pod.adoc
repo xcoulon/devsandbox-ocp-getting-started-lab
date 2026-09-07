@@ -64,14 +64,14 @@ replacement automatically.
 In the left navigation, click *Workloads* → *Pods*.
 
 // SCREENSHOT NEEDED: Workloads → Pods in {user}-datasphere showing all 3 pods (api, redis, ui) Running with 0 Restarts
-image::../../assets/images/console-guide/lab-02-apps-never-down/02-pods-list-all-running.png[Pods list showing all 3 DataSphere pods running with 0 restarts]
+image::../../../assets/images/console-guide/lab-02-apps-never-down/02-pods-list-all-running.png[Pods list showing all 3 DataSphere pods running with 0 restarts]
 
 You will see 3 pods running: the API, Redis, and UI. Note the *Restarts* column is 0 for all.
 
 Click the three-dot menu (*⋮*) to the right of the `datasphere-ui-*` pod and select *Delete Pod*.
 
 // SCREENSHOT NEEDED: Pods list with three-dot menu (⋮) open on the datasphere-ui pod, showing "Delete Pod" option
-image::../../assets/images/console-guide/lab-02-apps-never-down/03-pods-delete-three-dot-menu.png[Pods list with the three-dot menu open on the datasphere-ui pod showing Delete Pod option]
+image::../../../assets/images/console-guide/lab-02-apps-never-down/03-pods-delete-three-dot-menu.png[Pods list with the three-dot menu open on the datasphere-ui pod showing Delete Pod option]
 
 Click *Delete* in the confirmation dialog.
 
@@ -79,7 +79,7 @@ Watch the list -- the deleted pod moves to *Terminating* while OpenShift immedia
 a replacement in *ContainerCreating*, then *Running*.
 
 // SCREENSHOT NEEDED: Pods list mid-replacement — old datasphere-ui pod in Terminating status, new pod in ContainerCreating or Running
-image::../../assets/images/console-guide/lab-02-apps-never-down/04-pod-terminating-new-creating.png[Pods list showing old pod Terminating and new pod already starting]
+image::../../../assets/images/console-guide/lab-02-apps-never-down/04-pod-terminating-new-creating.png[Pods list showing old pod Terminating and new pod already starting]
 ====
 
 OpenShift replaced the pod automatically through the ReplicaSet controller. With only 1
