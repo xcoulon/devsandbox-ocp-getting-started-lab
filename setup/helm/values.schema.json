@@ -36,6 +36,19 @@
           }
         }
       }
+    },
+    "passwords": {
+      "type": "object",
+      "properties": {
+        "postgres": {
+          "type": "string",
+          "x-interactive-labs": { "kind": "generated-password" }
+        },
+        "giteaAdmin": {
+          "type": "string",
+          "x-interactive-labs": { "kind": "generated-password" }
+        }
+      }
     }
   }
 }
