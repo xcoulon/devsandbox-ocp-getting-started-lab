@@ -1,49 +1,44 @@
 {
   "properties": {
-    "namespaces": {
-      "type": "object",
-      "properties": {
-        "gitea": {
-          "type": "string",
-          "title": "gitea namespace",
-          "description": "Namespace name for Gitea deployment",
-          "x-interactive-labs": {
-            "kind": "namespace-name"
-          }
-        },
-        "dataspehere": {
-          "type": "string",
-          "title": "datasphere namespace",
-          "description": "Namespace name for Datasphere application deployment",
-          "x-interactive-labs": {
-            "kind": "namespace-name"
-          }
-        },
-        "lab": {
-          "type": "string",
-          "title": "lab namespace",
-          "description": "Namespace name for lab experimentation",
-          "x-interactive-labs": {
-            "kind": "namespace-name"
-          }
-        },
-        "lab-helm": {
-          "type": "string",
-          "title": "lab helm namespace",
-          "description": "Namespace name for lab experimentation using Helm",
-          "x-interactive-labs": {
-            "kind": "namespace-name"
-          }
-        }
+    "gitea.namespace": {
+      "type": "string",
+      "title": "gitea namespace",
+      "description": "Namespace name for Gitea deployment",
+      "x-interactive-labs": {
+        "kind": "namespace-name"
       }
     },
-    "postgresql.auth.password": {
+    "gitea.admin.password": {
       "type": "string",
       "x-interactive-labs": {
         "kind": "generated-password"
       }
     },
-    "gitea.admin.password": {
+    "datasphere.namespace": {
+      "type": "string",
+      "title": "datasphere namespace",
+      "description": "Namespace name for Datasphere application deployment",
+      "x-interactive-labs": {
+        "kind": "namespace-name"
+      }
+    },
+    "lab.namespace": {
+      "type": "string",
+      "title": "lab namespace",
+      "description": "Namespace name for lab experimentation",
+      "x-interactive-labs": {
+        "kind": "namespace-name"
+      }
+    },
+    "lab-helm.namespace": {
+      "type": "string",
+      "title": "lab helm namespace",
+      "description": "Namespace name for lab experimentation using Helm",
+      "x-interactive-labs": {
+        "kind": "namespace-name"
+      }
+    },
+    "postgresql.auth.password": {
       "type": "string",
       "x-interactive-labs": {
         "kind": "generated-password"

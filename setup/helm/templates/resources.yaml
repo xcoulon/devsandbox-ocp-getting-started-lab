@@ -1,28 +1,8 @@
 apiVersion: v1
-kind: Namespace
-metadata:
-  name: {{ .Values.namespaces.gitea }}
----
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: {{ .Values.namespaces.datasphere }}
----
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: {{ .Values.namespaces.lab }}
----
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: {{ .Values.namespaces.labHelm }}
----
-apiVersion: v1
 kind: Secret
 metadata:
   name: gitea-postgresql-credentials
-  namespace: {{ .Values.namespaces.gitea }}
+  namespace: {{ .Values.gitea.namespace }}
 type: Opaque
 stringData:
   GITEA_ADMIN_PASSWORD: {{ required "gitea.admin.password is required" .Values.gitea.admin.password | quote }}
@@ -32,7 +12,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: postgresql
-  namespace: {{ .Values.namespaces.gitea }}
+  namespace: {{ .Values.gitea.namespace }}
 spec:
   accessModes: [ReadWriteOnce]
   resources:
@@ -46,7 +26,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: gitea
-  namespace: {{ .Values.namespaces.gitea }}
+  namespace: {{ .Values.gitea.namespace }}
 spec:
   accessModes: [ReadWriteOnce]
   resources:
@@ -60,7 +40,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: postgresql
-  namespace: {{ .Values.namespaces.gitea }}
+  namespace: {{ .Values.gitea.namespace }}
 spec:
   selector:
     app.kubernetes.io/name: postgresql
@@ -73,7 +53,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: postgresql
-  namespace: {{ .Values.namespaces.gitea }}
+  namespace: {{ .Values.gitea.namespace }}
 spec:
   replicas: 1
   selector:
@@ -129,7 +109,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: gitea
-  namespace: {{ .Values.namespaces.gitea }}
+  namespace: {{ .Values.gitea.namespace }}
 spec:
   selector:
     app.kubernetes.io/name: gitea
@@ -142,7 +122,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: gitea
-  namespace: {{ .Values.namespaces.gitea }}
+  namespace: {{ .Values.gitea.namespace }}
 spec:
   replicas: 1
   selector:
@@ -210,7 +190,7 @@ apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
   name: gitea
-  namespace: {{ .Values.namespaces.gitea }}
+  namespace: {{ .Values.gitea.namespace }}
 spec:
   {{- with .Values.gitea.route.host }}
   host: {{ . | quote }}
@@ -228,7 +208,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: datasphere-config
-  namespace: {{ .Values.namespaces.datasphere }}
+  namespace: {{ .Values.datasphere.namespace }}
 data:
   config.json: |
     {"theme": {{ .Values.datasphere.theme | quote }}}
@@ -239,7 +219,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: datasphere-redis
-  namespace: {{ .Values.namespaces.datasphere }}
+  namespace: {{ .Values.datasphere.namespace }}
 spec:
   selector:
     app.kubernetes.io/name: datasphere-redis
@@ -252,7 +232,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: datasphere-redis
-  namespace: {{ .Values.namespaces.datasphere }}
+  namespace: {{ .Values.datasphere.namespace }}
 spec:
   replicas: 1
   selector:
@@ -292,7 +272,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: datasphere-api
-  namespace: {{ .Values.namespaces.datasphere }}
+  namespace: {{ .Values.datasphere.namespace }}
 spec:
   selector:
     app.kubernetes.io/name: datasphere-api
@@ -305,7 +285,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: datasphere-api
-  namespace: {{ .Values.namespaces.datasphere }}
+  namespace: {{ .Values.datasphere.namespace }}
 spec:
   replicas: {{ .Values.datasphere.api.replicas }}
   selector:
@@ -360,7 +340,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: datasphere-ui
-  namespace: {{ .Values.namespaces.datasphere }}
+  namespace: {{ .Values.datasphere.namespace }}
 spec:
   selector:
     app.kubernetes.io/name: datasphere-ui
@@ -373,7 +353,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: datasphere-ui
-  namespace: {{ .Values.namespaces.datasphere }}
+  namespace: {{ .Values.datasphere.namespace }}
 spec:
   replicas: {{ .Values.datasphere.ui.replicas }}
   selector:
@@ -408,7 +388,7 @@ apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
   name: datasphere-ui
-  namespace: {{ .Values.namespaces.datasphere }}
+  namespace: {{ .Values.datasphere.namespace }}
 spec:
   {{- with .Values.datasphere.ui.route.host }}
   host: {{ . | quote }}
@@ -427,7 +407,7 @@ apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: datasphere-api
-  namespace: {{ .Values.namespaces.datasphere }}
+  namespace: {{ .Values.datasphere.namespace }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
@@ -448,7 +428,7 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: gitea-admin-bootstrap
-  namespace: {{ .Values.namespaces.gitea }}
+  namespace: {{ .Values.gitea.namespace }}
   annotations:
     helm.sh/hook: post-install,post-upgrade
     helm.sh/hook-weight: "-1"
@@ -510,7 +490,7 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: repo-seeding
-  namespace: {{ .Values.namespaces.gitea }}
+  namespace: {{ .Values.gitea.namespace }}
   annotations:
     helm.sh/hook: post-install,post-upgrade
     helm.sh/hook-weight: "1"

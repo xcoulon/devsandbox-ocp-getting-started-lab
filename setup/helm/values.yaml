@@ -1,10 +1,10 @@
 imagePullPolicy: IfNotPresent
 
-namespaces:
-  gitea: gitea
-  datasphere: datasphere
-  lab: lab
-  labHelm: lab-helm
+lab:
+  namespace: lab
+
+labHelm:
+  namespace: lab-helm
 
 podSecurityContext:
   runAsNonRoot: true
@@ -29,6 +29,7 @@ postgresql:
     limits: {cpu: 500m, memory: 512Mi}
 
 gitea:
+  namespace: gitea
   image: docker.io/gitea/gitea:1.22.6-rootless
   admin:
     username: gitea-admin
@@ -44,6 +45,7 @@ gitea:
     host: ""
 
 datasphere:
+  namespace: datasphere
   theme: earth
   api:
     image: quay.io/rhpds/datasphere-api:1.4.5
