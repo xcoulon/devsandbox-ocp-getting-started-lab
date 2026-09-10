@@ -10,6 +10,8 @@
     },
     "gitea.admin.password": {
       "type": "string",
+      "title": "gitea admin password",
+      "description": "Password for Gitea admin user",
       "x-interactive-labs": {
         "kind": "generated-password"
       }
@@ -40,6 +42,8 @@
     },
     "postgresql.auth.password": {
       "type": "string",
+      "title": "postgresql password",
+      "description": "Password for PostgreSQL database",
       "x-interactive-labs": {
         "kind": "generated-password"
       }

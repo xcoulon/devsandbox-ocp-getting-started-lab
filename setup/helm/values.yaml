@@ -16,6 +16,7 @@ containerSecurityContext:
     drop: [ALL]
 
 postgresql:
+  namespace: gitea
   image: docker.io/postgres:16.4-alpine
   auth:
     username: gitea
