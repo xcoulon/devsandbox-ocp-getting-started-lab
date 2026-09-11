@@ -182,7 +182,7 @@ spec:
             periodSeconds: 10
           volumeMounts:
             - name: gitea-config
-              mountPath: /data/gitea/conf
+              mountPath: /etc/gitea
             - name: data
               mountPath: /var/lib/gitea
       volumes:
