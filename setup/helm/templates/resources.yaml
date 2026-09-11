@@ -85,6 +85,8 @@ spec:
                   key: POSTGRESQL_PASSWORD
             - name: POSTGRES_DB
               value: {{ .Values.postgresql.auth.database | quote }}
+            - name: PGDATA
+              value: /var/lib/postgresql/data/pgdata
           resources:
             {{- toYaml .Values.postgresql.resources | nindent 12 }}
           readinessProbe:
