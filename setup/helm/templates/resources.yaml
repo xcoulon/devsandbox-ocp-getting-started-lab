@@ -181,9 +181,13 @@ spec:
             initialDelaySeconds: 20
             periodSeconds: 10
           volumeMounts:
+            - name: gitea-config
+              mountPath: /etc/gitea
             - name: data
               mountPath: /var/lib/gitea
       volumes:
+        - name: gitea-config
+          emptyDir: {}
         - name: data
           persistentVolumeClaim:
             claimName: gitea
