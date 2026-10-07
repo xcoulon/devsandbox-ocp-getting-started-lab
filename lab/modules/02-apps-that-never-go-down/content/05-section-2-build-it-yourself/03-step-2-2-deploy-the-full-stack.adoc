@@ -19,7 +19,7 @@ Install DataSphere with resilience features disabled:
 
 [source,role="execute",subs="attributes+"]
 ----
-helm install datasphere {gitea-root-url}/api/packages/gitea-admin/helm/datasphere-{datasphere-helm-version}.tgz --set api.hpa.enabled=false --set api.probes.enabled=false --set api.resources.enabled=false
+helm install datasphere {gitea-rootUrl}/api/packages/gitea-admin/helm/datasphere-{datasphere-helm-version}.tgz --set api.hpa.enabled=false --set api.probes.enabled=false --set api.resources.enabled=false
 ----
 
 [%collapsible]

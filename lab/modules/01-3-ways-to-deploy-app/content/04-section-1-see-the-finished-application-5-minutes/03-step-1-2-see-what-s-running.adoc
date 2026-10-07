@@ -14,10 +14,10 @@ oc get all
 =====
 [subs="attributes+"]
 ----
-NAME                                    READY   STATUS    RESTARTS   AGE
-pod/datasphere-api-7d464fc7c4-xxxxx     1/1     Running   0          5m
-pod/datasphere-redis-69c8864976-xxxxx   1/1     Running   0          5m
-pod/datasphere-ui-597f67c7bc-xxxxx      1/1     Running   0          5m
+NAME                            READY   STATUS    RESTARTS   AGE
+pod/datasphere-api-*            1/1     Running   0          5m
+pod/datasphere-redis-*          1/1     Running   0          5m
+pod/datasphere-ui-*             1/1     Running   0          5m
 
 NAME                     TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)    AGE
 service/datasphere-api   ClusterIP   172.x.x.x        <none>        8080/TCP   5m
@@ -29,10 +29,10 @@ deployment.apps/datasphere-api     1/1     1            1           5m
 deployment.apps/datasphere-redis   1/1     1            1           5m
 deployment.apps/datasphere-ui      1/1     1            1           5m
 
-NAME                                          DESIRED   CURRENT   READY   AGE
-replicaset.apps/datasphere-api-7d464fc7c4     1         1         1       5m
-replicaset.apps/datasphere-redis-69c8864976   1         1         1       5m
-replicaset.apps/datasphere-ui-597f67c7bc      1         1         1       5m
+NAME                                 DESIRED   CURRENT   READY   AGE
+replicaset.apps/datasphere-api-*     1         1         1       5m
+replicaset.apps/datasphere-redis-*   1         1         1       5m
+replicaset.apps/datasphere-ui-*      1         1         1       5m
 
 NAME                                                 REFERENCE                   TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
 horizontalpodautoscaler.autoscaling/datasphere-api   Deployment/datasphere-api   cpu: 16%/50%   1         5         1          5m
@@ -58,7 +58,7 @@ In the left navigation, expand *Workloads* and click *Pods*.
 
 image::../../../../../assets/images/console-guide/lab-01-deploy-the-app/02-pods-list-all-running.png[Pods list showing all 3 DataSphere pods running]
 
-You'll see 3 pods: `datasphere-api`, `datasphere-redis`, and `datasphere-ui` -- all *Running*
+You'll see 3 pods: `datasphere-api-*`, `datasphere-redis-*`, and `datasphere-ui-*` -- all *Running*
 with *1/1* Ready.
 ====
 

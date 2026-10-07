@@ -28,7 +28,7 @@ You'll see what Self Heal does in Section 4.
 [cols="1,2",options="header"]
 |===
 | Field | Value
-| *Repository URL* | `pass:a[{gitea-root-url}/{user}/datasphere-gitops]`
+| *Repository URL* | `pass:a[{gitea-rootUrl}/{gitea-admin-username}/datasphere-gitops]`
 | *Revision* | `HEAD`
 | *Path* | `.`
 |===

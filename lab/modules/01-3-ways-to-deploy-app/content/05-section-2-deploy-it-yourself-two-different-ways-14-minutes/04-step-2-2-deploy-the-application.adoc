@@ -55,7 +55,8 @@ deployment "datasphere-ui" successfully rolled out
 [%collapsible]
 .Using the Web Console
 ====
-In the left navigation, click *+Add*, then click *Container images*.
+In the top navigation, select the *Workloads* tab, then click on the *Add page* link.
+Select the *Container Images* card to deploy an existing Image from an Image registry or Image stream tag.
 
 Fill in the form:
 

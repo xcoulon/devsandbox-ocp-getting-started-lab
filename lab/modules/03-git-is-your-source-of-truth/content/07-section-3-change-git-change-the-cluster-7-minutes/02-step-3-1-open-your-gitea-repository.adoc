@@ -12,7 +12,7 @@ Once logged in, your repositories are listed on the dashboard. Click *datasphere
 image::../../../../../assets/images/lab-03-gitea-dashboard.png[Gitea dashboard showing datasphere-gitops repository in the user's repo list]
 
 TIP: You can also go directly to your repository:
-link:{gitea-root-url}/{user}/datasphere-gitops[{gitea-root-url}/{user}/datasphere-gitops, window=_blank]
+link:{gitea-rootUrl}/{gitea-admin-username}/datasphere-gitops[{gitea-rootUrl}/{gitea-admin-username}/datasphere-gitops, window=_blank]
 
 // SCREENSHOT NEEDED: Gitea repository view for {user}/datasphere-gitops showing the file list (values.yaml visible)
 image::../../../../../assets/images/lab-03-gitea-repo.png[Gitea datasphere-gitops repository showing values.yaml in the file list]

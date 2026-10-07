@@ -13,8 +13,7 @@ oc project {lab-namespace}
 [%collapsible]
 .Using the Web Console
 ====
-Click the perspective switcher in the upper left of the navigation panel and select *Developer*.
-In the Project dropdown at the top of the content area, choose *`{lab-namespace}`*.
+In the left navigation, expand *Home*, select *Project* menu, then choose the *`{lab-namespace}`* project.
 
 // SCREENSHOT NEEDED: Developer perspective Topology view showing {lab-namespace} selected and "No resources found" / empty state
 image::../../../../../assets/images/console-guide/lab-01-deploy-the-app/08b-developer-perspective-empty-lab.png[Developer perspective showing the empty user-lab project in Topology view]

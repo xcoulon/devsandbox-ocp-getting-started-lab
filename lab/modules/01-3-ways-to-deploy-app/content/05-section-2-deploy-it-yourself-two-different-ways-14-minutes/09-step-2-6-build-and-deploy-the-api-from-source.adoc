@@ -10,7 +10,7 @@ installs dependencies, and packages everything into a container image -- all ins
 
 [source,role="execute",subs="attributes+"]
 ----
-oc new-app python~{gitea-root-url}/{user}/datasphere-api --name=datasphere-api
+oc new-app python~{gitea-rootUrl}/{gitea-admin-username}/datasphere-api --name=datasphere-api
 ----
 
 [%collapsible]
@@ -74,9 +74,9 @@ deployment "datasphere-api" successfully rolled out
 [%collapsible]
 .Using the Web Console
 ====
-In the left navigation, click *+Add*, then click *Import from Git*.
+Click the *Quick ereate* button in the top right menu, then select *Import from Git* (you may need to reduce this drawer to reveal the top menu)
 
-. In the *Git Repo URL* field, paste: `{gitea-root-url}/{user}/datasphere-api`
+. In the *Git Repo URL* field, paste: `https://{gitea-rootUrl}/{gitea-admin-username}/datasphere-api`
 . OpenShift detects the repository and selects a build strategy. If it shows *Dockerfile*
   instead of *Builder Image*, click *Edit Import Strategy* and select *Builder Image*,
   then choose the *Python* builder.

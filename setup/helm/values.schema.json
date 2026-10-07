@@ -24,6 +24,14 @@
         "admin": {
           "type": "object",
           "properties": {
+            "username": {
+              "type": "string",
+              "title": "gitea admin username",
+              "description": "Username for Gitea admin account",
+              "x-interactive-labs": {
+                "kind": "username"
+              }
+            },
             "password": {
               "type": "string",
               "title": "gitea admin password",
@@ -45,6 +53,19 @@
           "description": "Namespace name for Datasphere application deployment",
           "x-interactive-labs": {
             "kind": "namespace-name"
+          }
+        },
+        "ui": {
+          "type": "object",
+          "properties": {
+            "image": {
+              "type": "string",
+              "title": "datasphere UI image",
+              "description": "Image for Datasphere UI application deployment",
+              "x-interactive-labs": {
+                "kind": "image-name"
+              }
+            }
           }
         }
       }

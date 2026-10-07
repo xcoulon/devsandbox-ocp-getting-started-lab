@@ -15,7 +15,7 @@ Install the DataSphere chart -- this deploys UI, API, and Redis in one command:
 
 [source,role="execute",subs="attributes+"]
 ----
-helm install datasphere {gitea-root-url}/gitea-admin/datasphere-gitops/archive/main.tar.gz
+helm install datasphere https://{gitea-rootUrl}/gitea-admin/datasphere-gitops/archive/main.tar.gz
 ----
 
 [%collapsible]
@@ -62,7 +62,7 @@ NOTE: The DataSphere chart is served from a direct Gitea URL and is not register
 OpenShift Helm catalog. Run the `helm install` command from the Terminal as shown in the CLI
 steps above, then return here to verify the result.
 
-After the `helm install` completes, click *Helm* in the left navigation. The *datasphere*
+After the `helm install` completes, expand *Ecosystem* and click *Helm* in the left navigation. The *datasphere*
 release appears with *Status: deployed* and *Revision: 1*.
 
 // SCREENSHOT NEEDED: Helm Releases page in {lab-helm-namespace} showing the datasphere release with Status: deployed and Revision: 1

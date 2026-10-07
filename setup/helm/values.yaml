@@ -53,6 +53,13 @@ gitea:
     PROVIDER = file
     SESSION_NAME = gitea
     SESSION_SECURE = false
+    [cors]
+    ENABLED = true
+    ALLOW_DOMAIN = *
+    ALLOW_SUBDOMAIN = false
+    METHODS = GET,HEAD,POST,PUT,PATCH,DELETE,OPTIONS
+    MAX_AGE = 10m
+    ALLOW_CREDENTIALS = false
 datasphere:
   namespace: datasphere
   theme: earth
@@ -89,10 +96,10 @@ repoSeed:
   repositories:
     - name: datasphere-api
       sourcePath: datasphere/api
-      private: true
+      private: false
     - name: datasphere-ui
       sourcePath: datasphere/ui
-      private: true
+      private: false
     - name: datasphere-gitops
       sourcePath: datasphere/gitops
-      private: true
+      private: false

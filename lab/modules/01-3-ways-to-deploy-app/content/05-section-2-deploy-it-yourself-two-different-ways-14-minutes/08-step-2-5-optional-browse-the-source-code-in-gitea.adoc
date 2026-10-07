@@ -2,14 +2,17 @@
 :source-highlighter: highlightjs
 
 Your lab environment includes a personal Gitea instance with the DataSphere API source code
-already loaded. Click the *Gitea* tab in the Showroom sidebar.
+already loaded. 
+
+In the left navigation, expand *Networking*, select *Routes* menu, then choose *`{gitea-namespace}`* in the project selector.
+Click on the location link of the *gitea* route to access Gitea
 
 If you see *Sign In* and *Register* buttons, you are not logged in yet. Click *Sign In* and
-use your lab credentials (`{user}` / `{password}`). After logging in, your repositories are
+use your lab credentials (`{gitea-admin-username}` / `{gitea-admin-password}`). After logging in, your repositories are
 listed on the dashboard -- click *datasphere-api*.
 
 You can also open the repository directly in a new tab:
-link:{gitea-root-url}/{user}/datasphere-api[{gitea-root-url}/{user}/datasphere-api, window=_blank]
+link:https://{gitea-rootUrl}/{gitea-admin-username}/datasphere-api[{gitea-rootUrl}/{gitea-admin-username}/datasphere-api, window=_blank]
 
 You can skip this step -- the next command pulls the source directly from Gitea.
 

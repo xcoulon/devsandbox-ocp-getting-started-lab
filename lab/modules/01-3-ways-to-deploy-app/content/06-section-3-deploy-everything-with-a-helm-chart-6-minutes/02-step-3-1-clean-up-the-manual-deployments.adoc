@@ -4,10 +4,10 @@
 First, remove the resources you created manually in Section 2. Use the Terminal for this step --
 deleting multiple resource types is much faster from the CLI.
 
-[source,role="execute"]
+[source,role="execute",subs="attributes+"]
 ----
-oc delete all --selector app=datasphere-ui
-oc delete all --selector app=datasphere-api
+oc delete all --selector app=datasphere-ui -n {lab-namespace}
+oc delete all --selector app=datasphere-api -n {lab-namespace}
 ----
 
 [%collapsible]
@@ -28,9 +28,9 @@ imagestream.image.openshift.io "datasphere-api" deleted from {lab-namespace} nam
 
 Verify the project is clean:
 
-[source,role="execute"]
+[source,role="execute",subs="attributes+"]
 ----
-oc get all
+oc get all -n {lab-namespace}
 ----
 
 [%collapsible]
