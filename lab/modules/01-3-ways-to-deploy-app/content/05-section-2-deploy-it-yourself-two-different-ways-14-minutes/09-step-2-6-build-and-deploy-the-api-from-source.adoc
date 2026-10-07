@@ -74,7 +74,7 @@ deployment "datasphere-api" successfully rolled out
 [%collapsible]
 .Using the Web Console
 ====
-Click the *Quick ereate* button in the top right menu, then select *Import from Git* (you may need to reduce this drawer to reveal the top menu)
+Click the *console:qs-masthead-import[Quick create]* button in the top right menu, then select *Import from Git* (you may need to reduce this drawer to reveal the top menu)
 
 . In the *Git Repo URL* field, paste: `https://{gitea-rootUrl}/{gitea-admin-username}/datasphere-api`
 . OpenShift detects the repository and selects a build strategy. If it shows *Dockerfile*

@@ -25,7 +25,7 @@ Copy the URL from the `HOST/PORT` column and open it in your browser.
 [%collapsible]
 .Using the Web Console
 ====
-In the left navigation, expand *Workloads*, select *Topology*, click the *open URL* icon near the Route 'datasphere-ui' location
+In the left navigation, expand *console:qs-nav-workloads[Workloads]*, select *console:qs-admin-nav-topology[Topology]*, click the *open URL* icon near the Route 'datasphere-ui' location
 
 // SCREENSHOT NEEDED: Topology view showing the datasphere-ui node with an arrow or callout pointing to the open URL icon in its top-right corner
 image::../../../../../assets/images/console-guide/lab-01-deploy-the-app/09b-topology-datasphere-ui-open-url.png[Topology view showing datasphere-ui node with the open URL icon highlighted]

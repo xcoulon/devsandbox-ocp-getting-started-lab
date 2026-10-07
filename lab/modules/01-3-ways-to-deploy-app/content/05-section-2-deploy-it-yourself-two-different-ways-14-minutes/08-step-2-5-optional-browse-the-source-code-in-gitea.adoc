@@ -4,7 +4,7 @@
 Your lab environment includes a personal Gitea instance with the DataSphere API source code
 already loaded. 
 
-In the left navigation, expand *Networking*, select *Routes* menu, then choose *`{gitea-namespace}`* in the project selector.
+In the left navigation, expand *console:qs-nav-networking[Networking]*, select *resource:route.openshift.io/v1/Route[Routes]*, then choose *`{gitea-namespace}`* in the project selector.
 Click on the location link of the *gitea* route to access Gitea
 
 If you see *Sign In* and *Register* buttons, you are not logged in yet. Click *Sign In* and

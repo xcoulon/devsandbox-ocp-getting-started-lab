@@ -13,7 +13,7 @@ oc login --token=... --server=...
 ----
 
 Note: If `oc` is not already installed on your machine, you can download it directly from the OpenShift console: 
-click the *?* icon in the top-right corner, select *Command Line Tools*, and download the version of `oc` 
+click the *console:qs-masthead-help[?]* icon in the top-right corner, select *Command Line Tools*, and download the version of `oc` 
 that matches your operating system.
 
 
