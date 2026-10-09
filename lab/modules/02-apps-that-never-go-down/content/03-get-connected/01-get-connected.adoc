@@ -1,2 +1,34 @@
 = Get connected
 :source-highlighter: highlightjs
+
+Each step in this lab includes both a *Terminal (CLI)* and a *Web Console* option.
+Use whichever you prefer -- both achieve the same result.
+
+[%collapsible]
+.Using the Terminal (CLI)
+====
+
+Click the *Terminal* tab on the right side of this lab interface.
+
+Log in to the cluster:
+
+[source,role="execute",subs="attributes+"]
+----
+oc login {openshift-api-url} --username {user} --password {password}
+----
+
+.Expected output
+=====
+[subs="attributes+"]
+----
+Login successful.
+
+You have access to the following projects and can switch between them with 'oc project <projectname>':
+
+  * {datasphere-namespace}
+    {lab-namespace}
+
+Using project "{datasphere-namespace}".
+----
+=====
+====

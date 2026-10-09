@@ -30,7 +30,6 @@ datasphere-ui-7c9d8e6f4-m3n7p   1/1     Running   0          10m
 oc delete pod $(oc get pod --selector component=ui -o jsonpath='{.items[0].metadata.name}')
 ----
 
-[%collapsible]
 .Expected output
 =====
 ----
@@ -45,7 +44,6 @@ Check the pods again:
 oc get pods --selector component=ui
 ----
 
-[%collapsible]
 .Expected output
 =====
 ----
@@ -61,14 +59,14 @@ replacement automatically.
 [%collapsible]
 .Using the Web Console
 ====
-In the left navigation, click *Workloads* → *Pods*.
+In the left navigation, expand *console:qs-nav-workloads[Workloads]* and click *Pods*.
 
 // SCREENSHOT NEEDED: Workloads → Pods in {datasphere-namespace} showing all 3 pods (api, redis, ui) Running with 0 Restarts
 image::../../../../../assets/images/console-guide/lab-02-apps-never-down/02-pods-list-all-running.png[Pods list showing all 3 DataSphere pods running with 0 restarts]
 
 You will see 3 pods running: the API, Redis, and UI. Note the *Restarts* column is 0 for all.
 
-Click the three-dot menu (*⋮*) to the right of the `datasphere-ui-*` pod and select *Delete Pod*.
+Click the three-dot menu (*⋮*) to the right of the `datasphere-ui-\*` pod and select *Delete Pod*.
 
 // SCREENSHOT NEEDED: Pods list with three-dot menu (⋮) open on the datasphere-ui pod, showing "Delete Pod" option
 image::../../../../../assets/images/console-guide/lab-02-apps-never-down/03-pods-delete-three-dot-menu.png[Pods list with the three-dot menu open on the datasphere-ui pod showing Delete Pod option]
